@@ -104,6 +104,65 @@
 
   /* Updated tag */
   .updated { font-size: 12px; color: #4a5568; margin-top: 32px; text-align: center; }
+
+  /* ── OPPORTUNITIES V2 ─────────────────────────────── */
+  .opp-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+  .filter-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .filter-label{font-size:12px;color:#718096;font-weight:600;white-space:nowrap;}
+  .fsel{background:#1a1f2e;border:1px solid #2d3748;color:#e2e8f0;padding:5px 10px;border-radius:6px;font-size:12px;cursor:pointer;outline:none;}
+  .fsel:focus{border-color:#63b3ed;}
+  .f-clear{background:none;border:1px solid #4a5568;color:#718096;padding:5px 10px;border-radius:6px;font-size:12px;cursor:pointer;}
+  .f-clear:hover{border-color:#718096;color:#e2e8f0;}
+  .refresh-btn{background:#1e3a5f;border:1px solid #2c5282;color:#63b3ed;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .refresh-btn:hover{background:#2c5282;}
+  .refresh-toast{background:#1a1f2e;border:1px solid #2d3748;border-radius:8px;padding:10px 16px;font-size:12px;color:#a0aec0;margin-bottom:14px;}
+
+  .opp-group{margin-bottom:28px;}
+  .group-hdr{display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:8px 8px 0 0;border-bottom:2px solid;}
+  .exact-hdr{background:#0d2b1a;border-color:#276749;}
+  .partial-hdr{background:#2b1c09;border-color:#7b4f00;}
+  .supply-hdr{background:#0a1929;border-color:#2c5282;}
+  .buyer-hdr{background:#1a0d2e;border-color:#553c9a;}
+  .g-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .g-title{font-size:12px;font-weight:800;letter-spacing:1px;white-space:nowrap;}
+  .g-sub{font-size:12px;color:#718096;flex:1;}
+  .g-cnt{background:#2d3748;color:#e2e8f0;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px;}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:10px;padding:12px;background:#0f1117;border:1px solid #2d3748;border-top:none;border-radius:0 0 8px 8px;}
+  .opp-card{background:#1a1f2e;border-radius:7px;border-left:4px solid;overflow:hidden;transition:box-shadow .15s;}
+  .opp-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.5);}
+  .opp-card.exact{border-left-color:#48bb78;}
+  .opp-card.partial{border-left-color:#ed8936;}
+  .opp-card.sup-only{border-left-color:#63b3ed;}
+  .opp-card.buy-only{border-left-color:#b794f4;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;padding:11px 14px 8px;}
+  .card-prod{font-weight:700;font-size:13px;color:#e2e8f0;line-height:1.3;}
+  .card-sku{font-size:11px;color:#718096;margin-top:2px;}
+  .card-badges{display:flex;gap:5px;flex-shrink:0;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end;}
+  .card-body{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #2d3748;}
+  .card-side{padding:9px 13px;}
+  .card-side:first-child{border-right:1px solid #2d3748;}
+  .side-lbl{font-size:10px;font-weight:700;letter-spacing:.8px;color:#4a5568;margin-bottom:5px;text-transform:uppercase;}
+  .side-co{font-size:13px;font-weight:600;color:#e2e8f0;}
+  .side-em{font-size:11px;color:#63b3ed;}
+  .side-d{font-size:12px;color:#a0aec0;margin-top:3px;line-height:1.4;}
+  .side-price{font-size:15px;font-weight:700;color:#68d391;}
+  .side-snip{font-size:11px;color:#718096;margin-top:6px;font-style:italic;border-top:1px solid #2d3748;padding-top:6px;line-height:1.4;}
+  .age-hot{display:inline-block;background:#742a2a;color:#fc8181;font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;}
+  .age-active{display:inline-block;background:#1c4532;color:#68d391;font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;}
+  .age-stale{display:inline-block;background:#2d3748;color:#a0aec0;font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;}
+  .warn-note{display:inline-block;background:#744210;color:#fbd38d;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600;}
+  .card-action{padding:8px 13px;background:#131720;border-top:1px solid #2d3748;font-size:12px;color:#a0aec0;line-height:1.5;}
+  .ca-arrow{color:#63b3ed;font-weight:700;margin-right:4px;}
+  .ca-margin{font-size:11px;color:#f6e05e;margin-top:3px;}
+
+  .badge-exact{background:#276749;color:#9ae6b4;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;}
+  .badge-partial{background:#7b4f00;color:#fbd38d;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;}
+  .badge-sup-only{background:#2c5282;color:#90cdf4;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;}
+  .badge-buy-only{background:#553c9a;color:#d6bcfa;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;}
+  .badge-active{display:inline-block;background:#1c4532;color:#9ae6b4;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
+  .badge-stale{display:inline-block;background:#2d3748;color:#a0aec0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
+  .card-single{padding:9px 13px;}
 </style>
 </head>
 <body>
@@ -130,252 +189,706 @@
 <div class="container">
 
   <div class="stats">
-    <div class="stat hot"><div class="num">7</div><div class="lbl">HOT – Act now</div></div>
-    <div class="stat wait"><div class="num">1</div><div class="lbl">Waiting on supplier</div></div>
-    <div class="stat supply"><div class="num">315</div><div class="lbl">Supply offers on file</div></div>
-    <div class="stat demand"><div class="num">60</div><div class="lbl">Active buying leads</div></div>
+    <div class="stat hot"><div class="num">5</div><div class="lbl">HOT — Act now</div></div>
+    <div class="stat supply"><div class="num">4</div><div class="lbl">Exact matches</div></div>
+    <div class="stat demand"><div class="num">14</div><div class="lbl">Buyers need supply</div></div>
+    <div class="stat wait"><div class="num">15</div><div class="lbl">Supply needs buyer</div></div>
   </div>
 
-  <div class="section-title">Active Opportunities</div>
-  <div class="table-wrap">
-  <table>
-    <thead><tr>
-      <th>Product</th><th>Buyer</th><th>Buyer Contact</th><th>Supplier</th><th>Supplier Price</th><th>Qty</th><th>Location</th><th>Next Action</th><th>Status</th>
-    </tr></thead>
-    <tbody>
-      <tr>
-        <td><span class="product">Aperol 1L</span><br><span class="dim">6x1L x11%</span></td>
-        <td>Milanako (Boris) — CONFIRMED ORDER<br>+ ElixeMarket full load</td>
-        <td><span class="email">boris@milanako.lv</span></td>
-        <td><span class="dim">Find supply EXW Loen</span></td>
-        <td><span class="price">Target: ≤€46/cs</span></td>
-        <td>1,000+ cs</td>
-        <td>EX Loendersloot</td>
-        <td><span class="action">→ Contact Ambermare, Kollaras, Rotterdam for Aperol 1L pricing</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Beefeater 6x70cl NRF</span></td>
-        <td>ElixeMarket</td>
-        <td><span class="email">trade@elixemarket.com</span></td>
-        <td><span class="dim">Find supply on floor Loen</span></td>
-        <td>—</td>
-        <td>1,800 cs</td>
-        <td>EX Loendersloot (on floor)</td>
-        <td><span class="action">→ Source Beefeater 6x70cl NRF on floor, then quote ElixeMarket</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">JW Red Label 12x70cl RF</span></td>
-        <td>ElixeMarket</td>
-        <td><span class="email">trade@elixemarket.com</span></td>
-        <td><span class="dim">Find supply EXW Loen</span></td>
-        <td>—</td>
-        <td>3,100 cs</td>
-        <td>EX Loendersloot</td>
-        <td><span class="action">→ Source JW Red Label 12x70cl RF, quote ElixeMarket</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Jose Cuervo Silver 6x70cl</span></td>
-        <td>ElixeMarket (full load)</td>
-        <td><span class="email">trade@elixemarket.com</span></td>
-        <td>Rotterdam Traders (Sarah)</td>
-        <td><span class="price">€45/cs (180cs only)</span></td>
-        <td>Full load needed</td>
-        <td>EX Loendersloot</td>
-        <td><span class="action">→ Rotterdam has 180cs; find more or offer partial, then quote</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Hennessy VSOP 12x100cl GBX</span></td>
-        <td>ElixeMarket (full load)</td>
-        <td><span class="email">trade@elixemarket.com</span></td>
-        <td><span class="dim">Find supply EXW Loen</span></td>
-        <td>—</td>
-        <td>Full load</td>
-        <td>EX Loendersloot</td>
-        <td><span class="action">→ Source Hennessy VSOP 12x100cl, then quote ElixeMarket</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Jack Daniels 1L NRF</span><br><span class="dim">12x1L x40%</span></td>
-        <td>Milanako (Boris)</td>
-        <td><span class="email">boris@milanako.lv</span></td>
-        <td>CSE Overseas (Tamo)</td>
-        <td><span class="price">$152 / cs</span></td>
-        <td>990 cs</td>
-        <td>EX Loendersloot<br><span class="dim">ETA 22.06.26, T1</span></td>
-        <td><span class="action">→ Quote Milanako — CSE $152/cs (990cs ETA 22-Jun, T1) OR Green Hill €127/cs (1,450cs, 4wks) · Green Hill cheaper</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Singleton 12YO</span><br><span class="dim">70cl GBX</span></td>
-        <td>Sabai Group (Dragan)</td>
-        <td><span class="email">dragan@sabai.group</span></td>
-        <td>Check Loendersloot</td>
-        <td><span class="dim">—</span></td>
-        <td>—</td>
-        <td>—</td>
-        <td><span class="action">→ Reply to Sabai RFQ with availability</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Vodka Stolichnaya</span><br><span class="dim">750ml</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td>Brest Vodka (Belarus)</td>
-        <td><span class="dim">No reply received</span></td>
-        <td>TBC</td>
-        <td>Belarus EXW</td>
-        <td><span class="action">→ Follow up with Brest Vodka — Monday deadline passed, no reply yet</span></td>
-        <td><span class="badge-wait">⏳ Waiting</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Macallan 18 Sherry Oak</span><br><span class="dim">70cl</span></td>
-        <td>Ambermare (Rihards)</td>
-        <td><span class="email">sales@ambermare.eu</span></td>
-        <td><span class="dim">Find supply &lt;€226</span></td>
-        <td><span class="dim">Target: €226/cs EX Loendersloot</span></td>
-        <td>TBC</td>
-        <td>EX Loendersloot</td>
-        <td><span class="action">→ Source M18 Sherry below €226</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Jameson 1L</span></td>
-        <td>Milanako (Tim)</td>
-        <td><span class="email">tim.topcijs@milanako.lv</span></td>
-        <td><span class="dim">Find supply NL/Latvia</span></td>
-        <td>—</td>
-        <td>Up to 2 loads</td>
-        <td>Latvia or NL</td>
-        <td><span class="action">→ Source Jameson 1L with quick lead time</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">JW Black Label</span><br><span class="dim">750ml / 1L</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source JW Black, then quote</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">JW Red Label</span><br><span class="dim">750ml</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source JW Red, then quote</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Chivas Royal Salute 21yo</span><br><span class="dim">6x70cl GB coded</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td>Bluebird Enterprises (Pratiksha)</td>
-        <td><span class="price">$400/cs EXW Loen</span></td>
-        <td>850 cs</td>
-        <td>EXW Loendersloot<br><span class="dim">4 wks</span></td>
-        <td><span class="action">→ Get buy price from Exporters.SG buyer, then quote via Bluebird</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Jägermeister</span><br><span class="dim">700ml NRF</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Jägermeister NRF</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Glenfiddich 12yo</span><br><span class="dim">6x70cl GBX coded</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td>Bluebird Enterprises (Pratiksha)</td>
-        <td><span class="price">$235/cs EXW Loen</span></td>
-        <td>1,500 cs</td>
-        <td>EXW Loendersloot<br><span class="dim">4 wks</span></td>
-        <td><span class="action">→ Get buy price from Exporters.SG buyer, then quote via Bluebird</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Beluga Nobel Vodka</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Beluga</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Smirnoff Vodka</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Smirnoff</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">FINLANDIA</span><br><span class="dim">100cl x12 NRF</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Finlandia NRF</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Campari</span><br><span class="dim">1L</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Campari 1L</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Red Bull slim cans</span><br><span class="dim">FTL</span></td>
-        <td>Genoa Overseas (Martina)</td>
-        <td><span class="email">martina@genoaoverseas.com</span></td>
-        <td><span class="dim">Find supply (no SA origin)</span></td>
-        <td><span class="dim">Best offer EXW/DAP Italy</span></td>
-        <td>FTL</td><td>Italy</td>
-        <td><span class="action">→ Source Red Bull slim cans, non-SA origin</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-    
-      <!-- === NEW MATCHES FROM 13-Jun EMAIL SEARCH === -->
-      <tr>
-        <td><span class="product">Jameson</span><br><span class="dim">12x75cl x40% NRF ngb</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td>Bluebird Enterprises (Pratiksha)</td>
-        <td><span class="price">€83/cs EXW Loen</span></td>
-        <td>2,340 cs</td>
-        <td>EXW Loendersloot<br><span class="dim">On floor — ready now</span></td>
-        <td><span class="action">→ Get Exporters.SG buy price; also check if Milanako (Tim) would take 75cl vs 1L</span></td>
-        <td><span class="badge-hot">🔥 HOT</span></td>
-      </tr>
-      <tr>
-        <td><span class="product">Nuvo Sparkling Vodka Liqueur</span></td>
-        <td>Exporters.SG buyer</td>
-        <td><span class="email">via Gmail</span></td>
-        <td><span class="dim">Find supply</span></td>
-        <td>—</td><td>—</td><td>—</td>
-        <td><span class="action">→ Source Nuvo Sparkling Vodka (any size); check Ambermare, Kollaras</span></td>
-        <td><span class="badge-find">🔍 Find supply</span></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="opp-controls">
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <select class="fsel" id="f-conf" onchange="applyOppFilters()">
+        <option value="">All confidence</option>
+        <option value="exact">EXACT matches</option>
+        <option value="partial">PARTIAL matches</option>
+        <option value="sup-only">Supply only</option>
+        <option value="buy-only">Buyer only</option>
+      </select>
+      <select class="fsel" id="f-status" onchange="applyOppFilters()">
+        <option value="">All status</option>
+        <option value="HOT">🔥 HOT</option>
+        <option value="ACTIVE">✓ ACTIVE</option>
+        <option value="STALE">⏸ STALE</option>
+      </select>
+      <select class="fsel" id="f-cat" onchange="applyOppFilters()">
+        <option value="">All categories</option>
+        <option value="whisky">Whisky</option>
+        <option value="gin">Gin</option>
+        <option value="vodka">Vodka</option>
+        <option value="tequila">Tequila</option>
+        <option value="beer">Beer</option>
+        <option value="liqueur">Liqueur</option>
+      </select>
+      <select class="fsel" id="f-inbox" onchange="applyOppFilters()">
+        <option value="">All inboxes</option>
+        <option value="bd@premiere.ge">bd@premiere.ge</option>
+        <option value="jonathanpalsh@premiere.ge">jonathanpalsh@premiere.ge</option>
+        <option value="jonathanpalsh@gmail.com">jonathanpalsh@gmail.com</option>
+      </select>
+      <button class="f-clear" onclick="clearOppFilters()">✕ Clear</button>
+    </div>
+    <button class="refresh-btn" onclick="handleOppRefresh()">⟳ Refresh</button>
   </div>
-</div>
-</div>
+  <div id="refresh-toast" class="refresh-toast" style="display:none"></div>
 
+  <!-- GROUP 1: EXACT -->
+  <div class="opp-group" id="grp-exact">
+    <div class="group-hdr exact-hdr">
+      <span class="g-dot" style="background:#48bb78"></span>
+      <span class="g-title">EXACT MATCHES</span>
+      <span class="g-sub">Brand + size + pack all confirmed — ready to quote</span>
+      <span class="g-cnt" id="cnt-exact">4</span>
+    </div>
+    <div class="card-grid" id="cards-exact">
+<div class="opp-card exact" data-conf="exact" data-status="HOT" data-cat="whisky" data-inbox="bd@premiere.ge / jonathanpalsh@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">JW Red Label 12×70cl</div><div class="card-sku">RF · T1 · 40%</div></div>
+    <div class="card-badges"><span class="badge-exact">EXACT</span><span class="badge-hot">🔥 HOT</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">ElixeMarket</div>
+      <div class="side-em">trade@elixemarket.com</div>
+      <div class="side-d">Full load · <span class="age-hot">4 days ago</span></div>
+      <div class="side-snip">"Please send best offer for JW Red Label 12x70cl full load EXW Loen…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Newport Global</div>
+      <div class="side-price">€32.00/cs</div>
+      <div class="side-d">3,100 cs READY</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">T1 · RF · ready now</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Quote ElixeMarket above €32/cs. Newport has 3,100cs ready now EXW Loen.</div>
+</div>
+<div class="opp-card exact" data-conf="exact" data-status="HOT" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jack Daniel's 12×1L NRF</div><div class="card-sku">T1 · 40%</div></div>
+    <div class="card-badges"><span class="badge-exact">EXACT</span><span class="badge-hot">🔥 HOT</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">ElixeMarket + Boris Milanako</div>
+      <div class="side-em">trade@elixemarket.com / boris@milanako.lv</div>
+      <div class="side-d">Full load (EX/ElixeM) · qty TBC (Milanako) · <span class="age-hot">HOT</span></div>
+      <div class="side-snip">"Full load EXW Loen NRF… confirm availability"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">CSE Overseas</div>
+      <div class="side-price">$152.00/cs</div>
+      <div class="side-d">990 cs</div>
+      <div class="side-d">ETA Rotterdam 22-Jun-26</div>
+      <div class="side-d">T1 · arriving in 6 days</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>TWO buyers confirmed HOT. Quote both ElixeMarket & Milanako. CSE 990cs arriving Rotterdam 22-Jun — close this week.<div class="ca-margin">💰 $152/cs cost → target $170–180/cs sell</div></div>
+</div>
+<div class="opp-card exact" data-conf="exact" data-status="HOT" data-cat="beer" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Corona Cero 0.0% 12×330ml</div><div class="card-sku">Beer · 0.0% ABV</div></div>
+    <div class="card-badges"><span class="badge-exact">EXACT</span><span class="badge-hot">🔥 HOT</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">Clive Hill + Prakash Hathiramani</div>
+      <div class="side-em">clive.hill.trader@gmail.com / pahilaj@pahilaj.com</div>
+      <div class="side-d">Multiple loads confirmed · <span class="age-hot">5 days ago</span></div>
+      <div class="side-snip">"We are interested in Corona Cero 0.0% 12x330ml…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">On floor Loendersloot</div>
+      <div class="side-price">€2.85/cs</div>
+      <div class="side-d">11 loads × 3,360cs = 36,960cs total</div>
+      <div class="side-d">On floor Loendersloot</div>
+      <div class="side-d">BBD 25-Aug-26 · READY</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>TWO active buyers. Plenty of stock. BBD Aug-25 — note to buyers. Push to close both deals this week.<br><span class="warn-note">⚠ Corona Cero 0.0% ≠ Corona Extra 4.5% — do NOT mix up</span></div>
+</div>
+<div class="opp-card exact" data-conf="exact" data-status="STALE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Chivas Regal 12yo RF</div><div class="card-sku">Multiple sizes: 70cl · 75cl · 1L</div></div>
+    <div class="card-badges"><span class="badge-exact">EXACT</span><span class="badge-stale">⏸ STALE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">ElixeMarket</div>
+      <div class="side-em">trade@elixemarket.com</div>
+      <div class="side-d">Multiple sizes / full loads · <span class="age-stale">36 days ago (STALE)</span></div>
+      <div class="side-snip">"Please offer Chivas 12yo RF, all sizes available…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Sabai Group</div>
+      <div class="side-price">€11.30/btl (70cl) · €11.00/btl (75cl) · €12.87/btl (1L)</div>
+      <div class="side-d">All sizes available</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">T1 · RF</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Re-engage ElixeMarket — confirm still interested. Sabai has all 3 sizes ready. Offer full load pricing.</div>
+</div>
+    </div>
+  </div>
+
+  <!-- GROUP 2: PARTIAL -->
+  <div class="opp-group" id="grp-partial">
+    <div class="group-hdr partial-hdr">
+      <span class="g-dot" style="background:#ed8936"></span>
+      <span class="g-title">PARTIAL MATCHES</span>
+      <span class="g-sub">Brand confirmed — verify size or terms before quoting</span>
+      <span class="g-cnt" id="cnt-partial">5</span>
+    </div>
+    <div class="card-grid" id="cards-partial">
+<div class="opp-card partial" data-conf="partial" data-status="ACTIVE" data-cat="gin" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Bombay Sapphire</div><div class="card-sku">Size not confirmed by buyer</div></div>
+    <div class="card-badges"><span class="badge-partial">PARTIAL</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">ElixeMarket</div>
+      <div class="side-em">trade@elixemarket.com</div>
+      <div class="side-d">Full load · <span class="age-active">11 days ago</span></div>
+      <div class="side-snip">"Looking for Bombay Sapphire full load EXW Loen…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">CSE Overseas</div>
+      <div class="side-price">$125.00/cs</div>
+      <div class="side-d">1,300 cs READY</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">T1 · 12×1L · ready now</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>CONFIRM SIZE: Ask ElixeMarket if they want 12×1L. If yes, CSE has 1,300cs at $125/cs ready now.<br><span class="warn-note">⚠ Buyer said "full load" without size — 70cl ≠ 1L, do not assume</span></div>
+</div>
+<div class="opp-card partial" data-conf="partial" data-status="ACTIVE" data-cat="liqueur" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Jägermeister 6×70cl</div><div class="card-sku">T1 RF — buyer requested NRF</div></div>
+    <div class="card-badges"><span class="badge-partial">PARTIAL</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">Exporters.SG buyer</div>
+      <div class="side-em">via Gmail</div>
+      <div class="side-d">700ml NRF requested · <span class="age-active">ACTIVE</span></div>
+      <div class="side-snip">"Looking for Jägermeister 700ml NRF…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Newport Global</div>
+      <div class="side-price">€32.00/cs</div>
+      <div class="side-d">2,560 cs</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">T1 · RF · ETA mid-July</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Confirm Exporters.SG accepts T1 RF (not NRF). If yes, Newport has 2,560cs for mid-July.<br><span class="warn-note">⚠ Buyer wants NRF — supplier has RF. Confirm buyer accepts before quoting</span></div>
+</div>
+<div class="opp-card partial" data-conf="partial" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Chivas Royal Salute 21yo 6×70cl</div><div class="card-sku">GBX coded · supply confirmed</div></div>
+    <div class="card-badges"><span class="badge-partial">PARTIAL</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">Exporters.SG buyer</div>
+      <div class="side-em">via Gmail</div>
+      <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+      <div class="side-snip">"Interested in Chivas Royal Salute 21yo…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Bluebird Enterprises (Pratiksha)</div>
+      <div class="side-price">$400.00/cs</div>
+      <div class="side-d">850 cs</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">~4 weeks lead time</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>GET BUY PRICE from Exporters.SG buyer first. Bluebird cost is $400/cs — need buyer's target to calculate margin.</div>
+</div>
+<div class="opp-card partial" data-conf="partial" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Glenfiddich 12yo 6×70cl GBX</div><div class="card-sku">Coded · supply confirmed</div></div>
+    <div class="card-badges"><span class="badge-partial">PARTIAL</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">Exporters.SG buyer</div>
+      <div class="side-em">via Gmail</div>
+      <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+      <div class="side-snip">"Offer on Glenfiddich 12yo 6x70cl coded…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Bluebird Enterprises (Pratiksha)</div>
+      <div class="side-price">$235.00/cs</div>
+      <div class="side-d">1,500 cs</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">~4 weeks lead time</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>GET BUY PRICE from Exporters.SG buyer. Bluebird cost $235/cs. Only quote when you know their target.</div>
+</div>
+<div class="opp-card partial" data-conf="partial" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Jameson 12×75cl NRF</div><div class="card-sku">ngb · supply on floor</div></div>
+    <div class="card-badges"><span class="badge-partial">PARTIAL</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-side">
+      <div class="side-lbl">BUYER</div>
+      <div class="side-co">Milanako (Tim)</div>
+      <div class="side-em">tim.topcijs@milanako.lv</div>
+      <div class="side-d">Up to 2 loads · <span class="age-active">ACTIVE</span></div>
+      <div class="side-snip">"Looking for Jameson 1L NL/Latvia…"</div>
+    </div>
+    <div class="card-side">
+      <div class="side-lbl">SUPPLIER</div>
+      <div class="side-co">Bluebird Enterprises</div>
+      <div class="side-price">€83.00/cs</div>
+      <div class="side-d">2,340 cs ON FLOOR</div>
+      <div class="side-d">EXW Loendersloot</div>
+      <div class="side-d">Ready now</div>
+    </div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Tim wants Jameson 1L, but Bluebird has 75cl. CONFIRM if Tim accepts 75cl as alternative.<br><span class="warn-note">⚠ Tim requested 1L — 1L ≠ 75cl. Confirm before quoting</span></div>
+</div>
+    </div>
+  </div>
+
+  <!-- GROUP 3: SUPPLY → BUYER NEEDED -->
+  <div class="opp-group" id="grp-supply">
+    <div class="group-hdr supply-hdr">
+      <span class="g-dot" style="background:#63b3ed"></span>
+      <span class="g-title">SUPPLY FOUND — BUYER NEEDED</span>
+      <span class="g-sub">Confirmed stock available — find a buyer</span>
+      <span class="g-cnt" id="cnt-supply">15</span>
+    </div>
+    <div class="card-grid" id="cards-supply">
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jack Daniel's 12×75cl NRF</div><div class="card-sku">T1 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Newport Global</div>
+    <div class="side-price">€103.00/cs</div>
+    <div class="side-d">1,600 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Market to ElixeMarket, Milanako, Exporters.SG — no buyer yet for 75cl size.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="liqueur" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jägermeister 6×70cl</div><div class="card-sku">T1 RF · (also listed as PARTIAL above if buyer confirms RF)</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Newport Global</div>
+    <div class="side-price">€32.00/cs</div>
+    <div class="side-d">2,560 cs · EXW Loendersloot · ETA mid-July</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Buyer pending NRF/RF confirmation. Also market proactively to other traders.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jim Beam White 12×75cl</div><div class="card-sku">T1 · RF · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Newport Global</div>
+    <div class="side-price">€56.00/cs</div>
+    <div class="side-d">1,500 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>No confirmed buyer. Market to ElixeMarket, Exporters.SG, Ambermare.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jim Beam White 12×1L</div><div class="card-sku">T1 · RF · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Newport Global</div>
+    <div class="side-price">€64.50/cs</div>
+    <div class="side-d">450 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Small lot. Market to regional buyers. 450cs = could sell as part-container.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Grey Goose 6×70cl</div><div class="card-sku">T1 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">$108.00/cs</div>
+    <div class="side-d">800 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>No buyer found yet. Push to Exporters.SG, Ambermare, ElixeMarket.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Grey Goose 6×1L</div><div class="card-sku">T2 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">$110.00/cs</div>
+    <div class="side-d">1,866 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Large lot available. T2 — note market restrictions. Find duty-free or export buyer.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Grey Goose 12×75cl</div><div class="card-sku">T2 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">$158.00/cs</div>
+    <div class="side-d">1,800 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>No buyer yet. 1,800cs is a full load. Market to US/Canada-focused traders.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Grey Goose 144×5cl</div><div class="card-sku">T2 · 40% miniatures</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">$250.00/cs</div>
+    <div class="side-d">900 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Miniatures — niche market (airlines, hotels, duty-free). Contact duty-free buyers.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Absolut 120×5cl</div><div class="card-sku">T2 · miniatures</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">€60.00/cs</div>
+    <div class="side-d">1,560 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Miniatures lot. Push to duty-free, airline catering buyers.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Absolut 24×20cl</div><div class="card-sku">T2 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">€53.00/cs</div>
+    <div class="side-d">2,184 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>No buyer. 20cl format — good for gastronomy / hospitality buyers.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="vodka" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Absolut 24×37.5cl</div><div class="card-sku">T2 · 40%</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">CSE Overseas</div>
+    <div class="side-price">€83.00/cs</div>
+    <div class="side-d">1,404 cs READY · EXW Loendersloot · Ready now</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>No buyer. 37.5cl format — find duty-free or travel retail buyers.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Redbreast 12yo 70cl</div><div class="card-sku">Irish single pot still</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Flashbird UAE (Uday)</div>
+    <div class="side-price">€27.20/btl</div>
+    <div class="side-d">MOQ 60 cs · EXW Loendersloot · Ready</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Contact Irish whiskey buyers — Milanako, Exporters.SG. Premium product.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Famous Grouse 70cl</div><div class="card-sku">⚠ Ambermare wants 50cl — SIZE MISMATCH</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Sabai Group</div>
+    <div class="side-price">€4.40/btl</div>
+    <div class="side-d">Available · EXW Loendersloot · Ready</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Ambermare specifically wants 50cl — do NOT quote 70cl. Find alternative buyer for 70cl.<br><span class="warn-note">⚠ Ambermare = 50cl ONLY. 70cl ≠ 50cl. Do not substitute</span></div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="beer" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Rochefort 6 / 8 / 10 24×33cl</div><div class="card-sku">Belgian Trappist Abbey Beer</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Jos Vandermolen</div>
+    <div class="side-price">€23.61 / €28.41 / €36.61 per cs</div>
+    <div class="side-d">Available · EXW Gent, Belgium · Ready</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Contact Belgian beer importers, specialty beverage traders. Premium Trappist — good margin product.</div>
+</div>
+<div class="opp-card sup-only" data-conf="sup-only" data-status="ACTIVE" data-cat="beer" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Kaiserdom Hefe-Weißbier</div><div class="card-sku">24×0.5L cans · 12×1L cans</div></div>
+    <div class="card-badges"><span class="badge-sup-only">SUPPLY</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">SUPPLIER</div>
+    <div class="side-co">Kaiserdom</div>
+    <div class="side-price">€9.53/tray (0.5L) · €14.50/tray (1L)</div>
+    <div class="side-d">Available · Germany · Ready</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>German wheat beer — contact Eastern European, Middle East importers. Good volume product.</div>
+</div>
+    </div>
+  </div>
+
+  <!-- GROUP 4: BUYER → SUPPLY NEEDED -->
+  <div class="opp-group" id="grp-buyer">
+    <div class="group-hdr buyer-hdr">
+      <span class="g-dot" style="background:#b794f4"></span>
+      <span class="g-title">BUYER FOUND — SUPPLY NEEDED</span>
+      <span class="g-sub">Confirmed demand — source the product</span>
+      <span class="g-cnt" id="cnt-buyer">14</span>
+    </div>
+    <div class="card-grid" id="cards-buyer">
+<div class="opp-card buy-only" data-conf="buy-only" data-status="HOT" data-cat="liqueur" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Aperol 6×1L 11%</div><div class="card-sku">Two confirmed HOT buyers</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-hot">🔥 HOT</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">ElixeMarket + Boris Milanako (Milanako.lv)</div>
+    <div class="side-em">trade@elixemarket.com / boris@milanako.lv</div>
+    <div class="side-d">Full load (ElixeM) + 1,000+ cs (Milanako) · <span class="age-hot">4 days ago</span></div>
+    <div class="side-snip">"Looking for Aperol 1L full load EXW Loen ASAP"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Contact Ambermare, Kollaras, Rotterdam traders for Aperol 6×1L. Two buyers waiting — this is urgent.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="HOT" data-cat="gin" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Beefeater 6×70cl NRF</div><div class="card-sku">On floor Loendersloot required</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-hot">🔥 HOT</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">ElixeMarket</div>
+    <div class="side-em">trade@elixemarket.com</div>
+    <div class="side-d">1,800 cs on floor Loen · <span class="age-hot">4 days ago</span></div>
+    <div class="side-snip">"Need Beefeater 6x70cl NRF on floor Loendersloot, 1800cs"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Beefeater 6×70cl NRF specifically on floor Loen. Contact Flashbird, Ambermare, Rotterdam traders.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Famous Grouse 50cl</div><div class="card-sku">50cl ONLY — no substitution</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Ambermare (Rihards)</div>
+    <div class="side-em">sales@ambermare.eu</div>
+    <div class="side-d">2,500 btls DAP Riga · <span class="age-active">13 days ago</span></div>
+    <div class="side-snip">"We need Famous Grouse 50cl, 2500 bottles, DAP Riga"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Famous Grouse 50cl specifically. Sabai has 70cl — DO NOT substitute. Check Kollaras, Flashbird.<br><span class="warn-note">⚠ 50cl ONLY. Sabai 70cl is a different product — never quote 70cl for this request</span></div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Macallan 18yo Sherry Oak 70cl</div><div class="card-sku">Target price <€226/cs EXW Loen</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Ambermare (Rihards)</div>
+    <div class="side-em">sales@ambermare.eu</div>
+    <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Looking for Macallan 18 Sherry Oak below €226/cs EXW Loen"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Macallan 18yo Sherry Oak below €226/cs. Check Flashbird, Bluebird, ESB, Rotterdam.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="beer" data-inbox="jonathanpalsh@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Corona Extra 33cl 4.5%</div><div class="card-sku">⚠ NOT Corona Cero — confirm ABV</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Martina Genoa Overseas</div>
+    <div class="side-em">martina@genoaoverseas.com</div>
+    <div class="side-d">FTL required · <span class="age-active">8 days ago</span></div>
+    <div class="side-snip">"Looking for Corona Extra 33cl 4.5% FTL"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Corona Extra 4.5% — NOT Corona Cero 0.0%. Completely different product. Check AB InBev traders.<br><span class="warn-note">⚠ Corona Cero 0.0% ≠ Corona Extra 4.5% — check ABV before sourcing</span></div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">JW Red Label 750ml</div><div class="card-sku">Exporters.SG — 750ml ≠ 70cl</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Exporters.SG buyer</div>
+    <div class="side-em">via Gmail</div>
+    <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Need JW Red Label 750ml…"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source JW Red 750ml specifically. Newport has 12×70cl — 70cl ≠ 75cl, cannot substitute. Check US-origin traders.<br><span class="warn-note">⚠ Newport has 70cl only — 70cl ≠ 75cl. Do not quote Newport for this</span></div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">JW Black Label 750ml / 1L</div><div class="card-sku">Exporters.SG buyer</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Exporters.SG buyer</div>
+    <div class="side-em">via Gmail</div>
+    <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Looking for JW Black Label 750ml or 1L…"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source JW Black Label 750ml or 1L. Check Flashbird, Bluebird, Rotterdam traders.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="jonathanpalsh@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jameson 1L</div><div class="card-sku">Up to 2 full loads</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Milanako (Tim)</div>
+    <div class="side-em">tim.topcijs@milanako.lv</div>
+    <div class="side-d">Up to 2 loads (Latvia or NL) · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Looking for Jameson 1L, up to 2 loads, NL or Latvia"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Jameson 1L. ESB confirmed no 1L. Check Kollaras, Flashbird, other Irish whiskey traders.<br><span class="warn-note">⚠ Bluebird has 75cl — Tim wants 1L. Confirm if 75cl acceptable</span></div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Singleton 12yo 70cl GBX</div><div class="card-sku">Sabai Group RFQ</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Sabai Group (Dragan)</div>
+    <div class="side-em">dragan@sabai.group</div>
+    <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Do you have Singleton 12yo 70cl GBX coded?"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Check Bluebird, Flashbird, Rotterdam for Singleton 12yo 70cl GBX. Reply to Sabai with availability + price.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="tequila" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Jose Cuervo Silver 6×70cl</div><div class="card-sku">Rotterdam partial supply only 180cs</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">ElixeMarket</div>
+    <div class="side-em">trade@elixemarket.com</div>
+    <div class="side-d">Full load needed · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Jose Cuervo Silver full load EXW Loen"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Rotterdam has 180cs only — not enough for full load. Source additional stock or offer 180cs as partial.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="whisky" data-inbox="bd@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Hennessy VSOP 12×100cl GBX</div><div class="card-sku">Full load required EXW Loen</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">ElixeMarket</div>
+    <div class="side-em">trade@elixemarket.com</div>
+    <div class="side-d">Full load · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Hennessy VSOP 12x100cl GBX full load EXW Loen"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Hennessy VSOP 12×100cl. Check Flashbird, Rotterdam, CSE, Ambermare.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="vodka" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Stolichnaya 750ml</div><div class="card-sku">Exporters.SG — Brest Vodka contacted</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Exporters.SG buyer</div>
+    <div class="side-em">via Gmail</div>
+    <div class="side-d">QTY TBC · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Looking for Stolichnaya 750ml…"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Follow up with Brest Vodka — no reply received. Also try Ambermare, Kollaras for Stoli 750ml.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="gin" data-inbox="jonathanpalsh@gmail.com">
+  <div class="card-top">
+    <div><div class="card-prod">Various (Beluga Nobel, Smirnoff, Finlandia 100cl NRF, Campari 1L)</div><div class="card-sku">Exporters.SG enquiries</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Exporters.SG buyer</div>
+    <div class="side-em">via Gmail</div>
+    <div class="side-d">QTY TBC each · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Looking for Beluga Nobel, Smirnoff, Finlandia 100cl NRF, Campari 1L…"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Multiple Exporters.SG enquiries. Get buy prices from buyer first, then source each. Check Flashbird, Bluebird, Rotterdam.</div>
+</div>
+<div class="opp-card buy-only" data-conf="buy-only" data-status="ACTIVE" data-cat="beer" data-inbox="jonathanpalsh@premiere.ge">
+  <div class="card-top">
+    <div><div class="card-prod">Red Bull Slim Cans FTL</div><div class="card-sku">Non-South-Africa origin required</div></div>
+    <div class="card-badges"><span class="badge-buy-only">BUYER</span><span class="badge-active">✓ ACTIVE</span></div>
+  </div>
+  <div class="card-single">
+    <div class="side-lbl">BUYER</div>
+    <div class="side-co">Genoa Overseas (Martina)</div>
+    <div class="side-em">martina@genoaoverseas.com</div>
+    <div class="side-d">FTL · best offer EXW/DAP Italy · <span class="age-active">ACTIVE</span></div>
+    <div class="side-snip">"Red Bull slim cans FTL, no SA origin, EXW or DAP Italy"</div>
+  </div>
+  <div class="card-action"><span class="ca-arrow">→</span>Source Red Bull slim cans (European origin). Contact Red Bull distributors NL/AT/DE. Non-SA origin is critical.</div>
+</div>
+    </div>
+  </div>
+
+</div>
+</div>
 <!-- ══════════════════════════════════════ SUPPLY ══ -->
 <div id="supply" class="tab">
 <div class="container">
@@ -2015,6 +2528,49 @@
 </div>
 
 <script>
+
+function applyOppFilters() {
+  var conf   = document.getElementById('f-conf').value;
+  var status = document.getElementById('f-status').value;
+  var cat    = document.getElementById('f-cat').value;
+  var inbox  = document.getElementById('f-inbox').value;
+  document.querySelectorAll('.opp-card').forEach(function(card) {
+    var show = true;
+    if (conf   && card.dataset.conf   !== conf)                    show = false;
+    if (status && card.dataset.status !== status)                  show = false;
+    if (cat    && card.dataset.cat    !== cat)                     show = false;
+    if (inbox  && !card.dataset.inbox.includes(inbox))             show = false;
+    card.style.display = show ? '' : 'none';
+  });
+  // Update group counts
+  ['exact','partial','supply','buyer'].forEach(function(g) {
+    var grid = document.getElementById('cards-' + g);
+    if (!grid) return;
+    var vis = grid.querySelectorAll('.opp-card:not([style*="display: none"])').length;
+    var cnt = document.getElementById('cnt-' + g);
+    if (cnt) cnt.textContent = vis;
+    var grp = document.getElementById('grp-' + g);
+    if (grp) grp.style.display = vis === 0 ? 'none' : '';
+  });
+}
+function clearOppFilters() {
+  ['f-conf','f-status','f-cat','f-inbox'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  applyOppFilters();
+}
+function handleOppRefresh() {
+  var toast = document.getElementById('refresh-toast');
+  if (!toast) return;
+  toast.innerHTML = '⟳ <strong>Full email scan</strong> runs automatically every 3 hours via cloud agent. ' +
+    'Last dashboard update: <strong>Jun-16-2026</strong>. ' +
+    'The agent searches bd@premiere.ge, jonathanpalsh@premiere.ge, hd@premiere.ge and jonathanpalsh@gmail.com and pushes updates to this page.';
+  toast.style.display = 'block';
+  setTimeout(function() { toast.style.display = 'none'; }, 7000);
+}
+
+
 function show(id, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
