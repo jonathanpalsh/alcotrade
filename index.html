@@ -3693,8 +3693,8 @@ function qaCreateOppCard(lead,match){
           (lead.eta?'<div class="side-d">ETA: '+lead.eta+'</div>':'')+
           (lead.bbd_date?'<div class="side-d" style="color:#fc8181">BBD: '+lead.bbd_date+'</div>':'')+
           '<div style="margin-top:8px;display:flex;gap:5px">'+
-            '<button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️ Edit</button>'+
-            '<button class="ml-del-btn" onclick="qaDelOpp(''+lead.id+'')">🗑</button>'+
+            '<button class="ml-edit-btn" onclick="qaEditLead(\''+lead.id+'\')">✏️ Edit</button>'+
+            '<button class="ml-del-btn" onclick="qaDelOpp(\''+lead.id+'\')">🗑</button>'+
           '</div>'+
         '</div>'+
       '</div>'+
@@ -3717,8 +3717,8 @@ function qaCreateOppCard(lead,match){
         '<div class="card-src">'+icon+' Via '+lead.channel+'</div>'+
         (noteSnip?'<div class="card-notes">'+noteSnip+'</div>':'')+
         '<div style="margin-top:8px;display:flex;gap:5px">'+
-          '<button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️ Edit</button>'+
-          '<button class="ml-del-btn" onclick="qaDelOpp(''+lead.id+'')">🗑</button>'+
+          '<button class="ml-edit-btn" onclick="qaEditLead(\''+lead.id+'\')">✏️ Edit</button>'+
+          '<button class="ml-del-btn" onclick="qaDelOpp(\''+lead.id+'\')">🗑</button>'+
         '</div>'+
       '</div>';
   }
@@ -3756,7 +3756,7 @@ function qaRenderInTable(lead){
       '<td>'+(lead.eta||lead.bbd_date||'—')+'</td>'+
       '<td>'+(lead.company||'—')+'</td>'+
       '<td><span class="email">'+(lead.contact_name||'')+'</span></td>'+
-      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(''+lead.id+'')">🗑</button></td>';
+      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(\''+lead.id+'\')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(\''+lead.id+'\')">🗑</button></td>';
     tb.insertAdjacentElement('afterbegin',tr);
   }else{
     var tb2=document.querySelector('#demand-table tbody');
@@ -3772,7 +3772,7 @@ function qaRenderInTable(lead){
       '<td>'+p+'</td>'+
       '<td>'+(lead.location||'—')+'</td>'+
       '<td>'+icon+' '+lead.channel+'</td>'+
-      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(''+lead.id+'')">🗑</button></td>'+
+      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(\''+lead.id+'\')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(\''+lead.id+'\')">🗑</button></td>'+
       '<td><span class="badge-'+(lead.urgency==='HOT'?'high':'med')+'">'+lead.urgency+'</span></td>';
     tb2.insertAdjacentElement('afterbegin',tr2);
   }
@@ -3864,8 +3864,8 @@ function qaRenderManage(){
         ' · <span style="color:'+(l.urgency==='HOT'?'#fc8181':'#f6ad55')+'">'+l.urgency+'</span></div>'+
       '</div>'+
       '<div class="qa-lead-acts">'+
-        '<button class="ml-edit-btn" onclick="qaEditLead(''+l.id+'')">✏️</button>'+
-        '<button class="ml-del-btn" onclick="qaDelLead(''+l.id+'')">🗑</button>'+
+        '<button class="ml-edit-btn" onclick="qaEditLead(\''+l.id+'\')">✏️</button>'+
+        '<button class="ml-del-btn" onclick="qaDelLead(\''+l.id+'\')">🗑</button>'+
       '</div>'+
     '</div>';
   }).join('');
@@ -3896,9 +3896,7 @@ window.qaExtract=function(){
   var status=document.getElementById('qa-ext-status');
   btn.disabled=true;status.textContent='⏳ Extracting…';
   document.getElementById('qa-ext-preview').style.display='none';
-  var prompt='Extract trading lead details from this beverage trading message. Return ONLY a JSON object with these fields: type (BUY_REQUEST or SELL_OFFER), brand, size_cl (number), pack_config, abv (number), quantity_cases, t_grade (T1/T2/NRF/RF or null), location, price (number), currency (EUR/USD/GBP), price_per (case or bottle), bbd_date (YYYY-MM-DD or null), eta, contact_name, company, notes. Null for any field not mentioned. CRITICAL: size_cl must be exact number only.
-
-Message: "'+txt.replace(/"/g,'\"')+'"';
+  var prompt='Extract trading lead details from this beverage trading message. Return ONLY a JSON object with these fields: type (BUY_REQUEST or SELL_OFFER), brand, size_cl (number), pack_config, abv (number), quantity_cases, t_grade (T1/T2/NRF/RF or null), location, price (number), currency (EUR/USD/GBP), price_per (case or bottle), bbd_date (YYYY-MM-DD or null), eta, contact_name, company, notes. Null for any field not mentioned. CRITICAL: size_cl must be exact number only.\n\nMessage: "'+txt.replace(/"/g,'\"')+'"';
   fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
