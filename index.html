@@ -3469,9 +3469,15 @@ function generateInvoiceDoc() {
         <div class="qa-sec">
           <div class="qa-sec-ttl">Paste &amp; Extract with AI</div>
           <p style="font-size:11px;color:#64748b;margin:0 0 12px">Paste a raw WhatsApp, LinkedIn or email message. Claude will extract structured fields automatically.</p>
-          <div class="qa-row" style="align-items:flex-end">
-            <div class="qa-f"><label>Anthropic API Key (saved in browser)</label><input type="text" autocomplete="off" id="qa-apikey" placeholder="sk-ant-..." onfocus="qaApiKeyFocus(this)" onblur="qaApiKeyBlur(this)"></div>
+          <div id="qa-key-input-row" class="qa-row" style="align-items:flex-end">
+            <div class="qa-f"><label>Anthropic API Key</label><input type="text" autocomplete="off" id="qa-apikey" placeholder="sk-ant-api-key..."></div>
             <button class="qa-btn qa-btn-cancel" onclick="qaSaveKey()" style="height:34px;white-space:nowrap;margin-bottom:1px">Save Key</button>
+          </div>
+          <div id="qa-key-display-row" style="display:none;align-items:center;gap:10px;padding:6px 0 10px">
+            <span style="font-size:11px;color:#94a3b8">API Key:</span>
+            <span id="qa-key-mask" style="font-size:11px;color:#48bb78;font-family:monospace;letter-spacing:.05em"></span>
+            <span style="font-size:10px;color:#48bb78;font-weight:700">✓ Saved</span>
+            <button class="qa-btn qa-btn-cancel" onclick="qaChangeKey()" style="height:24px;font-size:10px;padding:2px 10px">Change</button>
           </div>
           <div class="qa-f" style="margin-bottom:10px"><label>Raw Message</label>
             <textarea class="qa-paste-area" id="qa-paste-txt" placeholder="Paste the full message here...&#10;&#10;Example:&#10;Hi, we have JD Old No.7 12x70cl, 900cs on floor EXW Loendersloot T2 €45/cs BBD 06/2027. Interested?"></textarea>
@@ -3518,8 +3524,15 @@ function generateInvoiceDoc() {
 
 var ICONS={WhatsApp:'📱',LinkedIn:'💼','Phone Call':'📞',Meeting:'🤝',Other:'📝'};
 var _extracted=null;
-var _savedApiKey=localStorage.getItem('qa_api_key')||'';
-function maskKey(k){if(!k)return'';return'•'.repeat(Math.max(0,k.length-8))+k.slice(-8);}
+var _savedApiKey=localStorage.getItem('anthropic_api_key')||localStorage.getItem('qa_api_key')||'';
+function maskKey(k){if(!k)return'';return'•'.repeat(Math.max(0,k.length-6))+k.slice(-6);}
+function updateKeyDisplay(){
+  var k=_savedApiKey;
+  var hasKey=k&&k.length>0;
+  document.getElementById('qa-key-input-row').style.display=hasKey?'none':'';
+  document.getElementById('qa-key-display-row').style.display=hasKey?'flex':'none';
+  if(hasKey)document.getElementById('qa-key-mask').textContent=maskKey(k);
+}
 
 /* ── SIZE MAP ── */
 var SIZE_MAP={'5':'5cl','20':'20cl','35':'35cl','37.5':'37.5cl','50':'50cl','70':'70cl','75':'75cl','100':'100cl','150':'150cl','330':'330ml','355':'355ml','500':'500ml','1000':'1L'};
@@ -3530,6 +3543,7 @@ function saveLeads(l){localStorage.setItem('manual_leads',JSON.stringify(l));}
 
 /* ── OPEN / CLOSE ── */
 window.qaOpen=function(){
+  _savedApiKey=localStorage.getItem('anthropic_api_key')||localStorage.getItem('qa_api_key')||'';
   qaResetForm();
   document.getElementById('qa-overlay').classList.add('open');
   var t=new Date(),mo=String(t.getMonth()+1).padStart(2,'0'),d=String(t.getDate()).padStart(2,'0');
@@ -3548,7 +3562,7 @@ window.qaTab=function(tab){
   if(p)p.classList.add('qa-active');
   document.getElementById('qa-modal-ftr').style.display=(tab==='form')?'flex':'none';
   if(tab==='manage')qaRenderManage();
-  if(tab==='paste'){document.getElementById('qa-apikey').value=maskKey(_savedApiKey);}
+  if(tab==='paste'){updateKeyDisplay();}
 };
 
 /* ── TYPE ── */
@@ -3896,17 +3910,20 @@ function qaToast(msg,color){
 }
 
 /* ── API KEY ── */
-window.qaApiKeyFocus=function(el){if(el.value.indexOf('•')>=0)el.value='';};
-window.qaApiKeyBlur=function(el){if(!el.value.trim())el.value=maskKey(_savedApiKey);};
 window.qaSaveKey=function(){
   var v=document.getElementById('qa-apikey').value.trim();
-  if(v&&v.indexOf('•')<0){
-    _savedApiKey=v;
-    localStorage.setItem('qa_api_key',v);
-    document.getElementById('qa-apikey').value=maskKey(v);
-    qaToast('API key saved.','#805ad5');
-  }else if(_savedApiKey){qaToast('Key already saved.','#805ad5');}
-  else{alert('Enter your Anthropic API key first.');}
+  if(!v){alert('Paste your Anthropic API key (sk-ant-...).');return;}
+  _savedApiKey=v;
+  localStorage.setItem('anthropic_api_key',v);
+  updateKeyDisplay();
+  qaToast('✓ API key saved','#48bb78');
+};
+window.qaChangeKey=function(){
+  _savedApiKey='';
+  document.getElementById('qa-key-input-row').style.display='';
+  document.getElementById('qa-key-display-row').style.display='none';
+  document.getElementById('qa-apikey').value='';
+  document.getElementById('qa-apikey').focus();
 };
 
 /* ── REVIEW CARD ── */
@@ -4041,7 +4058,7 @@ window.qaFillFromExtract=function(){
 
 /* ── EXTRACT WITH AI ── */
 window.qaExtract=function(){
-  var key=_savedApiKey||localStorage.getItem('qa_api_key')||'';
+  var key=_savedApiKey||localStorage.getItem('anthropic_api_key')||localStorage.getItem('qa_api_key')||'';
   if(!key){alert('Enter your Anthropic API key first.');return;}
   var txt=document.getElementById('qa-paste-txt').value.trim();
   if(!txt){alert('Paste a message first.');return;}
