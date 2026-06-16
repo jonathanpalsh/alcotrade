@@ -3470,7 +3470,7 @@ function generateInvoiceDoc() {
           <div class="qa-sec-ttl">Paste &amp; Extract with AI</div>
           <p style="font-size:11px;color:#64748b;margin:0 0 12px">Paste a raw WhatsApp, LinkedIn or email message. Claude will extract structured fields automatically.</p>
           <div class="qa-row" style="align-items:flex-end">
-            <div class="qa-f"><label>Anthropic API Key (saved in browser)</label><input type="password" id="qa-apikey" placeholder="sk-ant-..."></div>
+            <div class="qa-f"><label>Anthropic API Key (saved in browser)</label><input type="text" autocomplete="off" id="qa-apikey" placeholder="sk-ant-..." onfocus="qaApiKeyFocus(this)" onblur="qaApiKeyBlur(this)"></div>
             <button class="qa-btn qa-btn-cancel" onclick="qaSaveKey()" style="height:34px;white-space:nowrap;margin-bottom:1px">Save Key</button>
           </div>
           <div class="qa-f" style="margin-bottom:10px"><label>Raw Message</label>
@@ -3518,6 +3518,8 @@ function generateInvoiceDoc() {
 
 var ICONS={WhatsApp:'📱',LinkedIn:'💼','Phone Call':'📞',Meeting:'🤝',Other:'📝'};
 var _extracted=null;
+var _savedApiKey=localStorage.getItem('qa_api_key')||'';
+function maskKey(k){if(!k)return'';return'•'.repeat(Math.max(0,k.length-8))+k.slice(-8);}
 
 /* ── SIZE MAP ── */
 var SIZE_MAP={'5':'5cl','20':'20cl','35':'35cl','37.5':'37.5cl','50':'50cl','70':'70cl','75':'75cl','100':'100cl','150':'150cl','330':'330ml','355':'355ml','500':'500ml','1000':'1L'};
@@ -3544,9 +3546,9 @@ window.qaTab=function(tab){
   document.querySelectorAll('.qa-panel').forEach(function(p){p.classList.remove('qa-active');});
   var p=document.getElementById('qa-panel-'+tab);
   if(p)p.classList.add('qa-active');
-  document.getElementById('qa-modal-ftr').style.display=(tab==='manage')?'none':'flex';
+  document.getElementById('qa-modal-ftr').style.display=(tab==='form')?'flex':'none';
   if(tab==='manage')qaRenderManage();
-  if(tab==='paste'){var k=localStorage.getItem('qa_api_key')||'';document.getElementById('qa-apikey').value=k;}
+  if(tab==='paste'){document.getElementById('qa-apikey').value=maskKey(_savedApiKey);}
 };
 
 /* ── TYPE ── */
@@ -3611,7 +3613,6 @@ function qaCollect(){
 /* ── SUBMIT ── */
 window.qaSubmit=function(){
   var data=qaCollect();
-  if(!data.contact_name){alert('Contact Name is required.');return;}
   var leads=getLeads();
   var editId=document.getElementById('qa-edit-id').value;
   if(editId){
@@ -3895,10 +3896,17 @@ function qaToast(msg,color){
 }
 
 /* ── API KEY ── */
+window.qaApiKeyFocus=function(el){if(el.value.indexOf('•')>=0)el.value='';};
+window.qaApiKeyBlur=function(el){if(!el.value.trim())el.value=maskKey(_savedApiKey);};
 window.qaSaveKey=function(){
-  var k=document.getElementById('qa-apikey').value.trim();
-  localStorage.setItem('qa_api_key',k);
-  qaToast('API key saved in browser.','#805ad5');
+  var v=document.getElementById('qa-apikey').value.trim();
+  if(v&&v.indexOf('•')<0){
+    _savedApiKey=v;
+    localStorage.setItem('qa_api_key',v);
+    document.getElementById('qa-apikey').value=maskKey(v);
+    qaToast('API key saved.','#805ad5');
+  }else if(_savedApiKey){qaToast('Key already saved.','#805ad5');}
+  else{alert('Enter your Anthropic API key first.');}
 };
 
 /* ── REVIEW CARD ── */
@@ -4033,7 +4041,7 @@ window.qaFillFromExtract=function(){
 
 /* ── EXTRACT WITH AI ── */
 window.qaExtract=function(){
-  var key=localStorage.getItem('qa_api_key')||document.getElementById('qa-apikey').value.trim();
+  var key=_savedApiKey||localStorage.getItem('qa_api_key')||'';
   if(!key){alert('Enter your Anthropic API key first.');return;}
   var txt=document.getElementById('qa-paste-txt').value.trim();
   if(!txt){alert('Paste a message first.');return;}
