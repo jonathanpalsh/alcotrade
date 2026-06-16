@@ -163,6 +163,71 @@
   .badge-active{display:inline-block;background:#1c4532;color:#9ae6b4;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
   .badge-stale{display:inline-block;background:#2d3748;color:#a0aec0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
   .card-single{padding:9px 13px;}
+
+/* ════════════ QUICK ADD SYSTEM ════════════ */
+#qa-fab{position:fixed;bottom:28px;right:28px;z-index:9000;background:linear-gradient(135deg,#f6ad55,#ed8936);color:#1a202c;font-weight:700;font-size:14px;padding:13px 20px;border-radius:50px;box-shadow:0 4px 20px rgba(246,173,85,.5);cursor:pointer;user-select:none;transition:transform .15s,box-shadow .15s;letter-spacing:.02em}
+#qa-fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(246,173,85,.65)}
+#qa-overlay{display:none;position:fixed;inset:0;z-index:9001;background:rgba(0,0,0,.7);backdrop-filter:blur(3px);align-items:center;justify-content:center}
+#qa-overlay.open{display:flex}
+#qa-modal{background:#1e293b;border:1px solid #334155;border-radius:14px;width:700px;max-width:96vw;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,.6)}
+#qa-modal-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 22px 12px;border-bottom:1px solid #334155;flex-shrink:0}
+#qa-modal-hdr h3{margin:0;color:#f1f5f9;font-size:16px}
+#qa-close-btn{background:none;border:none;color:#64748b;cursor:pointer;font-size:20px;line-height:1;padding:0 2px}
+#qa-close-btn:hover{color:#f1f5f9}
+.qa-tabs{display:flex;gap:3px;padding:12px 22px 0;flex-shrink:0}
+.qa-tab{padding:7px 16px;border-radius:7px 7px 0 0;background:#0f172a;border:1px solid #334155;border-bottom:none;color:#64748b;cursor:pointer;font-size:12px;font-weight:600;transition:color .15s,background .15s}
+.qa-tab.qa-active{background:#1e293b;color:#f6ad55;border-bottom:1px solid #1e293b;margin-bottom:-1px}
+#qa-modal-body{flex:1;overflow-y:auto;padding:18px 22px}
+.qa-panel{display:none}
+.qa-panel.qa-active{display:block}
+.qa-sec{margin-bottom:16px}
+.qa-sec-ttl{font-size:10px;font-weight:700;color:#f6ad55;text-transform:uppercase;letter-spacing:.09em;margin-bottom:9px}
+.qa-row{display:flex;gap:10px;margin-bottom:10px}
+.qa-f{flex:1;min-width:0}
+.qa-f label{display:block;font-size:11px;color:#94a3b8;margin-bottom:4px;font-weight:500}
+.qa-f input,.qa-f select,.qa-f textarea{width:100%;background:#0f172a;border:1px solid #334155;border-radius:6px;color:#f1f5f9;font-size:12px;padding:7px 10px;outline:none;transition:border-color .15s;font-family:inherit}
+.qa-f input:focus,.qa-f select:focus,.qa-f textarea:focus{border-color:#f6ad55}
+.qa-f select option{background:#0f172a}
+.qa-f textarea{resize:vertical;min-height:66px}
+.qa-f.req label::after{content:' *';color:#fc8181}
+.qa-type-row{display:flex;gap:10px;margin-bottom:12px}
+.qa-tybtn{flex:1;padding:9px;border-radius:7px;border:2px solid #334155;background:#0f172a;color:#64748b;cursor:pointer;text-align:center;font-weight:600;font-size:12px;transition:all .15s}
+.qa-tybtn.tb-buy{border-color:#48bb78;color:#48bb78;background:rgba(72,187,120,.08)}
+.qa-tybtn.tb-sell{border-color:#63b3ed;color:#63b3ed;background:rgba(99,179,237,.08)}
+.qa-urg-row{display:flex;gap:8px}
+.qa-urg{flex:1;padding:6px 4px;border-radius:6px;border:2px solid #334155;background:#0f172a;color:#64748b;cursor:pointer;text-align:center;font-size:11px;font-weight:700;transition:all .15s}
+.qa-urg.u-hot{border-color:#fc8181;color:#fc8181;background:rgba(252,129,129,.08)}
+.qa-urg.u-active{border-color:#f6ad55;color:#f6ad55;background:rgba(246,173,85,.08)}
+.qa-urg.u-later{border-color:#64748b;color:#64748b;background:rgba(100,116,139,.08)}
+#qa-modal-ftr{padding:14px 22px;border-top:1px solid #334155;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
+.qa-btn{border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600;padding:9px 20px}
+.qa-btn-cancel{background:#334155;color:#94a3b8}
+.qa-btn-save{background:#f6ad55;color:#1a202c}
+.qa-btn-save:hover{background:#ed8936}
+.qa-btn-extract{background:#805ad5;color:#fff}
+.qa-btn-extract:hover{background:#6b46c1}
+.qa-btn-extract:disabled{opacity:.5;cursor:not-allowed}
+#qa-toast{position:fixed;bottom:88px;right:28px;z-index:9100;background:#1e293b;border:1px solid #48bb78;border-radius:9px;color:#f1f5f9;font-size:12px;padding:11px 16px;box-shadow:0 4px 20px rgba(0,0,0,.5);transform:translateY(12px);opacity:0;transition:all .3s;pointer-events:none;max-width:280px}
+#qa-toast.qt-show{transform:translateY(0);opacity:1}
+.ml-icon{font-size:13px;margin-right:3px}
+.badge-manual{display:inline-block;background:#553c9a;color:#d6bcfa;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
+.ml-edit-btn,.ml-del-btn{background:none;border:none;cursor:pointer;padding:2px 5px;border-radius:4px;font-size:11px;font-weight:600;transition:background .15s}
+.ml-edit-btn{color:#f6ad55}.ml-edit-btn:hover{background:rgba(246,173,85,.15)}
+.ml-del-btn{color:#fc8181}.ml-del-btn:hover{background:rgba(252,129,129,.15)}
+.card-src{font-size:10px;color:#64748b;margin-top:5px}
+.card-notes{background:#0a0f1a;border-radius:5px;padding:6px 9px;font-size:10px;color:#64748b;margin-top:7px;border-left:3px solid #553c9a;line-height:1.4}
+.qa-paste-area{width:100%;min-height:130px;background:#0f172a;border:1px solid #334155;border-radius:6px;color:#f1f5f9;font-size:12px;padding:9px;resize:vertical;outline:none;font-family:inherit}
+.qa-paste-area:focus{border-color:#f6ad55}
+#qa-ext-status{font-size:11px;color:#94a3b8;margin-top:7px;min-height:18px}
+#qa-ext-preview{margin-top:12px;background:#0f172a;border-radius:7px;padding:12px;border:1px solid #334155;display:none}
+#qa-ext-preview h4{margin:0 0 9px;color:#f6ad55;font-size:11px;text-transform:uppercase;letter-spacing:.07em}
+.qa-ext-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.qa-ext-fld{font-size:11px}.qa-ext-fld span{color:#64748b}.qa-ext-fld strong{color:#f1f5f9}
+.qa-lead-item{background:#0f172a;border:1px solid #334155;border-radius:7px;padding:10px 13px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:flex-start}
+.qa-lead-main{flex:1;min-width:0}
+.qa-lead-ttl{font-size:12px;font-weight:600;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qa-lead-meta{font-size:10px;color:#64748b;margin-top:2px}
+.qa-lead-acts{display:flex;gap:5px;margin-left:10px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -3263,5 +3328,625 @@ function generateInvoiceDoc() {
 }
 </script>
 
+
+<!-- ════════════ QUICK ADD FAB + MODAL ════════════ -->
+<div id="qa-fab" onclick="qaOpen()">＋ Add Lead</div>
+<div id="qa-overlay" onclick="qaOvClick(event)">
+  <div id="qa-modal">
+    <div id="qa-modal-hdr">
+      <h3>📱 Quick Add Lead</h3>
+      <button id="qa-close-btn" onclick="qaClose()">✕</button>
+    </div>
+    <div class="qa-tabs">
+      <div class="qa-tab qa-active" onclick="qaTab('form')">📝 Manual Entry</div>
+      <div class="qa-tab" onclick="qaTab('paste')">📋 Paste &amp; Extract</div>
+      <div class="qa-tab" onclick="qaTab('manage')">📂 My Leads</div>
+    </div>
+    <div id="qa-modal-body">
+
+      <!-- ── FORM PANEL ── -->
+      <div id="qa-panel-form" class="qa-panel qa-active">
+        <input type="hidden" id="qa-edit-id" value="">
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Lead Type</div>
+          <div class="qa-type-row">
+            <div class="qa-tybtn tb-buy" id="qa-tb-buy" onclick="qaSetType('BUY_REQUEST')">🛒 BUY REQUEST</div>
+            <div class="qa-tybtn" id="qa-tb-sell" onclick="qaSetType('SELL_OFFER')">📦 SELL OFFER</div>
+          </div>
+          <input type="hidden" id="qa-type" value="BUY_REQUEST">
+        </div>
+        <div class="qa-row">
+          <div class="qa-f req">
+            <label>Channel</label>
+            <select id="qa-channel">
+              <option value="WhatsApp">📱 WhatsApp</option>
+              <option value="LinkedIn">💼 LinkedIn</option>
+              <option value="Phone Call">📞 Phone Call</option>
+              <option value="Meeting">🤝 Meeting</option>
+              <option value="Other">📝 Other</option>
+            </select>
+          </div>
+          <div class="qa-f">
+            <label>Date Received</label>
+            <input type="date" id="qa-date-received">
+          </div>
+          <div class="qa-f">
+            <label>Urgency</label>
+            <div class="qa-urg-row">
+              <div class="qa-urg" data-u="HOT" onclick="qaSetUrg(this)">🔥 HOT</div>
+              <div class="qa-urg u-active" data-u="ACTIVE" onclick="qaSetUrg(this)">ACTIVE</div>
+              <div class="qa-urg" data-u="FOLLOW UP LATER" onclick="qaSetUrg(this)">LATER</div>
+            </div>
+            <input type="hidden" id="qa-urgency" value="ACTIVE">
+          </div>
+        </div>
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Contact</div>
+          <div class="qa-row">
+            <div class="qa-f"><label>Contact Name</label><input type="text" id="qa-cname" placeholder="John Smith"></div>
+            <div class="qa-f"><label>Company</label><input type="text" id="qa-company" placeholder="ABC Beverages Ltd"></div>
+          </div>
+          <div class="qa-row">
+            <div class="qa-f"><label>Contact Detail (phone / LinkedIn / email)</label><input type="text" id="qa-cdetail" placeholder="+44 7xxx... or linkedin.com/in/..."></div>
+          </div>
+        </div>
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Product</div>
+          <div class="qa-row">
+            <div class="qa-f req"><label>Product Description</label><input type="text" id="qa-product" placeholder="Jack Daniel's 12×70cl NRF"></div>
+            <div class="qa-f"><label>Brand</label><input type="text" id="qa-brand" placeholder="Jack Daniel's"></div>
+          </div>
+          <div class="qa-row">
+            <div class="qa-f">
+              <label>Size</label>
+              <select id="qa-size">
+                <option value="">—</option>
+                <option>5cl</option><option>20cl</option><option>35cl</option><option>37.5cl</option>
+                <option>50cl</option><option>70cl</option><option>75cl</option><option>100cl</option>
+                <option>150cl</option><option>330ml</option><option>355ml</option><option>500ml</option>
+                <option>1L</option><option>other</option>
+              </select>
+            </div>
+            <div class="qa-f"><label>Pack Config</label><input type="text" id="qa-pack" placeholder="12×70cl"></div>
+            <div class="qa-f"><label>ABV %</label><input type="number" id="qa-abv" placeholder="40" step="0.1"></div>
+          </div>
+          <div class="qa-row">
+            <div class="qa-f"><label>Quantity</label><input type="text" id="qa-qty" placeholder="1,800 cases / full load"></div>
+            <div class="qa-f">
+              <label>T-Grade</label>
+              <select id="qa-tgrade">
+                <option value="">Unknown</option>
+                <option>T1</option><option>T2</option><option>T1 or T2</option><option>NRF</option><option>RF</option>
+              </select>
+            </div>
+            <div class="qa-f">
+              <label>Location</label>
+              <select id="qa-location">
+                <option value="">—</option>
+                <option>EXW Loendersloot</option><option>DAP Loendersloot</option>
+                <option>EXW Riga</option><option>DAP Riga</option>
+                <option>FCA Leeuwarden</option><option>EXW Gent</option>
+                <option>CNF</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Pricing</div>
+          <div class="qa-row">
+            <div class="qa-f"><label>Price</label><input type="number" id="qa-price" placeholder="0.00" step="0.01"></div>
+            <div class="qa-f">
+              <label>Currency</label>
+              <select id="qa-currency"><option value="EUR">€ EUR</option><option value="USD">$ USD</option><option value="GBP">£ GBP</option></select>
+            </div>
+            <div class="qa-f">
+              <label>Per</label>
+              <select id="qa-price-per"><option value="case">case</option><option value="bottle">bottle</option></select>
+            </div>
+          </div>
+          <div class="qa-row">
+            <div class="qa-f"><label>BBD Date (optional)</label><input type="date" id="qa-bbd"></div>
+            <div class="qa-f"><label>ETA / Lead Time</label><input type="text" id="qa-eta" placeholder="ready / mid-July / 3 weeks"></div>
+          </div>
+        </div>
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Notes</div>
+          <div class="qa-f"><label>Original message / context</label><textarea id="qa-notes" placeholder="Paste the WhatsApp message, call notes, or any context here..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- ── PASTE PANEL ── -->
+      <div id="qa-panel-paste" class="qa-panel">
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Paste &amp; Extract with AI</div>
+          <p style="font-size:11px;color:#64748b;margin:0 0 12px">Paste a raw WhatsApp, LinkedIn or email message. Claude will extract structured fields automatically.</p>
+          <div class="qa-row" style="align-items:flex-end">
+            <div class="qa-f"><label>Anthropic API Key (saved in browser)</label><input type="password" id="qa-apikey" placeholder="sk-ant-..."></div>
+            <button class="qa-btn qa-btn-cancel" onclick="qaSaveKey()" style="height:34px;white-space:nowrap;margin-bottom:1px">Save Key</button>
+          </div>
+          <div class="qa-f" style="margin-bottom:10px"><label>Raw Message</label>
+            <textarea class="qa-paste-area" id="qa-paste-txt" placeholder="Paste the full message here...&#10;&#10;Example:&#10;Hi, we have JD Old No.7 12x70cl, 900cs on floor EXW Loendersloot T2 €45/cs BBD 06/2027. Interested?"></textarea>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="qa-btn qa-btn-extract" id="qa-ext-btn" onclick="qaExtract()">✨ Extract with AI</button>
+            <span id="qa-ext-status"></span>
+          </div>
+          <div id="qa-ext-preview">
+            <h4>Extracted Fields — review before saving</h4>
+            <div class="qa-ext-grid" id="qa-ext-grid"></div>
+            <button class="qa-btn qa-btn-save" style="margin-top:12px" onclick="qaFillFromExtract()">Fill Form with These Fields →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MANAGE PANEL ── -->
+      <div id="qa-panel-manage" class="qa-panel">
+        <div class="qa-sec">
+          <div class="qa-sec-ttl">Saved Manual Leads</div>
+          <div id="qa-leads-list"></div>
+        </div>
+      </div>
+
+    </div><!-- /qa-modal-body -->
+    <div id="qa-modal-ftr">
+      <button class="qa-btn qa-btn-cancel" onclick="qaClose()">Cancel</button>
+      <button class="qa-btn qa-btn-save" id="qa-save-btn" onclick="qaSubmit()">Save Lead</button>
+    </div>
+  </div>
+</div>
+<div id="qa-toast"></div>
+
+<script>
+/* ════════════ QUICK ADD SYSTEM ════════════ */
+(function(){
+'use strict';
+
+var ICONS={WhatsApp:'📱',LinkedIn:'💼','Phone Call':'📞',Meeting:'🤝',Other:'📝'};
+var _extracted=null;
+
+function getLeads(){return JSON.parse(localStorage.getItem('manual_leads')||'[]');}
+function saveLeads(l){localStorage.setItem('manual_leads',JSON.stringify(l));}
+
+/* ── OPEN / CLOSE ── */
+window.qaOpen=function(){
+  qaResetForm();
+  document.getElementById('qa-overlay').classList.add('open');
+  var t=new Date(),mo=String(t.getMonth()+1).padStart(2,'0'),d=String(t.getDate()).padStart(2,'0');
+  document.getElementById('qa-date-received').value=t.getFullYear()+'-'+mo+'-'+d;
+};
+window.qaClose=function(){document.getElementById('qa-overlay').classList.remove('open');};
+window.qaOvClick=function(e){if(e.target===document.getElementById('qa-overlay'))qaClose();};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')qaClose();});
+
+/* ── TABS ── */
+window.qaTab=function(tab){
+  var tabs=['form','paste','manage'];
+  document.querySelectorAll('.qa-tab').forEach(function(t,i){t.classList.toggle('qa-active',tabs[i]===tab);});
+  document.querySelectorAll('.qa-panel').forEach(function(p){p.classList.remove('qa-active');});
+  var p=document.getElementById('qa-panel-'+tab);
+  if(p)p.classList.add('qa-active');
+  document.getElementById('qa-modal-ftr').style.display=(tab==='manage')?'none':'flex';
+  if(tab==='manage')qaRenderManage();
+  if(tab==='paste'){var k=localStorage.getItem('qa_api_key')||'';document.getElementById('qa-apikey').value=k;}
+};
+
+/* ── TYPE ── */
+window.qaSetType=function(t){
+  document.getElementById('qa-type').value=t;
+  document.getElementById('qa-tb-buy').className='qa-tybtn'+(t==='BUY_REQUEST'?' tb-buy':'');
+  document.getElementById('qa-tb-sell').className='qa-tybtn'+(t==='SELL_OFFER'?' tb-sell':'');
+};
+
+/* ── URGENCY ── */
+window.qaSetUrg=function(el){
+  document.querySelectorAll('.qa-urg').forEach(function(u){u.className='qa-urg';});
+  var cls={HOT:'u-hot',ACTIVE:'u-active','FOLLOW UP LATER':'u-later'}[el.dataset.u]||'';
+  el.className='qa-urg '+cls;
+  document.getElementById('qa-urgency').value=el.dataset.u;
+};
+
+/* ── RESET FORM ── */
+function qaResetForm(){
+  document.getElementById('qa-edit-id').value='';
+  qaSetType('BUY_REQUEST');
+  ['qa-cname','qa-company','qa-cdetail','qa-product','qa-brand','qa-abv','qa-qty','qa-price','qa-eta','qa-notes','qa-bbd','qa-pack'].forEach(function(id){
+    var e=document.getElementById(id);if(e)e.value='';
+  });
+  ['qa-size','qa-tgrade','qa-location'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('qa-currency').value='EUR';
+  document.getElementById('qa-price-per').value='case';
+  document.getElementById('qa-urgency').value='ACTIVE';
+  document.querySelectorAll('.qa-urg').forEach(function(u){u.className='qa-urg';});
+  document.querySelector('.qa-urg[data-u="ACTIVE"]').className='qa-urg u-active';
+  document.getElementById('qa-save-btn').textContent='Save Lead';
+  qaTab('form');
+}
+
+/* ── COLLECT FORM ── */
+function qaCollect(){
+  return{
+    type:document.getElementById('qa-type').value,
+    channel:document.getElementById('qa-channel').value,
+    contact_name:document.getElementById('qa-cname').value.trim(),
+    company:document.getElementById('qa-company').value.trim(),
+    contact_detail:document.getElementById('qa-cdetail').value.trim(),
+    product:document.getElementById('qa-product').value.trim(),
+    brand:document.getElementById('qa-brand').value.trim(),
+    size:document.getElementById('qa-size').value,
+    pack_config:document.getElementById('qa-pack').value.trim(),
+    abv:document.getElementById('qa-abv').value||null,
+    quantity:document.getElementById('qa-qty').value.trim(),
+    t_grade:document.getElementById('qa-tgrade').value,
+    location:document.getElementById('qa-location').value,
+    price:document.getElementById('qa-price').value||null,
+    currency:document.getElementById('qa-currency').value,
+    price_per:document.getElementById('qa-price-per').value,
+    bbd_date:document.getElementById('qa-bbd').value||null,
+    eta:document.getElementById('qa-eta').value.trim(),
+    notes:document.getElementById('qa-notes').value.trim(),
+    date_received:document.getElementById('qa-date-received').value,
+    urgency:document.getElementById('qa-urgency').value
+  };
+}
+
+/* ── SUBMIT ── */
+window.qaSubmit=function(){
+  var data=qaCollect();
+  if(!data.product){alert('Product description is required.');return;}
+  var leads=getLeads();
+  var editId=document.getElementById('qa-edit-id').value;
+  if(editId){
+    var idx=leads.findIndex(function(l){return l.id===editId;});
+    if(idx>=0){data.id=editId;data.timestamp=leads[idx].timestamp;data.updated_at=Date.now();leads[idx]=data;}
+  }else{
+    data.id='ml_'+Date.now();data.timestamp=Date.now();leads.push(data);
+  }
+  saveLeads(leads);
+  var match=qaFindMatch(data);
+  qaRenderAllLeads();
+  qaToast('✅ Lead saved. '+(match?'✓ Match found!':'No match yet'),match?'#48bb78':'#f6ad55');
+  qaClose();
+};
+
+/* ── PRICE FORMAT ── */
+function fmtPrice(lead){
+  if(!lead.price)return'POA';
+  var s=lead.currency==='USD'?'$':lead.currency==='GBP'?'£':'€';
+  return s+parseFloat(lead.price).toFixed(2)+'/'+lead.price_per;
+}
+
+/* ── DAYS AGO ── */
+function daysAgo(dateStr){
+  if(!dateStr)return'';
+  var d=Math.floor((Date.now()-new Date(dateStr).getTime())/86400000);
+  return d===0?'today':d===1?'1 day ago':d+' days ago';
+}
+
+/* ── MATCHING ENGINE ── */
+function qaFindMatch(lead){
+  var terms=[];
+  if(lead.brand)terms=terms.concat(lead.brand.toLowerCase().split(/\s+/));
+  if(lead.product)terms=terms.concat(lead.product.toLowerCase().split(/[\s×x,]+/).filter(function(t){return t.length>3;}));
+  if(lead.size)terms.push(lead.size.toLowerCase().replace(/[clm]/g,''));
+  var found=null;
+  var rows=document.querySelectorAll(lead.type==='SELL_OFFER'?'#demand-table tbody tr:not([data-manual-id])':'#supply-table tbody tr:not([data-manual-id])');
+  rows.forEach(function(row){
+    if(found)return;
+    var txt=row.textContent.toLowerCase();
+    var hits=terms.filter(function(t){return t.length>2&&txt.indexOf(t)>=0;}).length;
+    if(hits>=2)found={row:row,hits:hits};
+  });
+  qaCreateOppCard(lead,found);
+  return found;
+}
+
+/* ── CREATE OPP CARD ── */
+function qaCreateOppCard(lead,match){
+  var icon=ICONS[lead.channel]||'📝';
+  var hasMatch=match&&match.hits>=2;
+  var isStrong=match&&match.hits>=3;
+  var conf=hasMatch?(isStrong?'exact':'partial'):(lead.type==='SELL_OFFER'?'sup-only':'buy-only');
+  var confBadge=hasMatch?(isStrong?'<span class="badge-exact">EXACT</span>':'<span class="badge-partial">PARTIAL</span>'):(lead.type==='SELL_OFFER'?'<span class="badge-sup-only">SUPPLY</span>':'<span class="badge-buy-only">BUYER</span>');
+  var urgBadge=lead.urgency==='HOT'?'<span class="badge-hot">🔥 HOT</span>':lead.urgency==='ACTIVE'?'<span class="badge-active">ACTIVE</span>':'<span class="badge-stale">LATER</span>';
+  var sku=[lead.size,lead.t_grade,lead.abv?lead.abv+'%':null].filter(Boolean).join(' · ');
+  var noteSnip=lead.notes?'"'+lead.notes.substring(0,70)+(lead.notes.length>70?'…':'')+'"':'';
+  var contactHtml='';
+  if(lead.contact_detail){
+    var cd=lead.contact_detail;
+    if(cd.indexOf('linkedin.com')>=0)contactHtml='<a href="'+cd+'" target="_blank" style="color:#63b3ed;font-size:10px">'+cd+'</a>';
+    else if(/^[+\d\s().-]+$/.test(cd))contactHtml='<a href="tel:'+cd+'" style="color:#63b3ed;font-size:10px">'+cd+'</a>';
+    else contactHtml='<div class="side-em">'+cd+'</div>';
+  }
+
+  var existing=document.querySelector('.opp-card[data-manual-id="'+lead.id+'"]');
+  if(existing)existing.remove();
+
+  var card=document.createElement('div');
+  card.className='opp-card '+conf;
+  card.dataset.conf=conf;
+  card.dataset.status=lead.urgency==='HOT'?'HOT':'ACTIVE';
+  card.dataset.cat='manual';
+  card.dataset.inbox=lead.channel;
+  card.dataset.manualId=lead.id;
+
+  if(hasMatch){
+    var matchedTxt=match.row.textContent.trim().substring(0,60);
+    card.innerHTML=
+      '<div class="card-top">'+
+        '<div><div class="card-prod">'+icon+' '+(lead.product||'—')+'</div>'+(sku?'<div class="card-sku">'+sku+'</div>':'')+
+        '</div><div class="card-badges">'+confBadge+urgBadge+'<span class="badge-manual">MANUAL</span></div>'+
+      '</div>'+
+      '<div class="card-body">'+
+        '<div class="card-side">'+
+          '<div class="side-lbl">'+(lead.type==='SELL_OFFER'?'SELLER':'BUYER')+'</div>'+
+          '<div class="side-co">'+(lead.company||'—')+'</div>'+
+          (lead.contact_name?'<div style="font-size:11px;color:#94a3b8">'+lead.contact_name+'</div>':'')+
+          contactHtml+
+          '<div class="side-d">'+(lead.quantity||'—')+' · '+daysAgo(lead.date_received)+'</div>'+
+          '<div class="card-src">'+icon+' Via '+lead.channel+'</div>'+
+          (noteSnip?'<div class="side-snip">'+noteSnip+'</div>':'')+
+        '</div>'+
+        '<div class="card-side">'+
+          '<div class="side-lbl">MATCHED FROM DB</div>'+
+          '<div class="side-price">'+fmtPrice(lead)+'</div>'+
+          (lead.location?'<div class="side-d">'+lead.location+'</div>':'')+
+          (lead.eta?'<div class="side-d">ETA: '+lead.eta+'</div>':'')+
+          (lead.bbd_date?'<div class="side-d" style="color:#fc8181">BBD: '+lead.bbd_date+'</div>':'')+
+          '<div style="margin-top:8px;display:flex;gap:5px">'+
+            '<button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️ Edit</button>'+
+            '<button class="ml-del-btn" onclick="qaDelOpp(''+lead.id+'')">🗑</button>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="card-action"><span class="ca-arrow">→</span>Matched: "'+matchedTxt+'"</div>';
+  }else{
+    card.innerHTML=
+      '<div class="card-top">'+
+        '<div><div class="card-prod">'+icon+' '+(lead.product||'—')+'</div>'+(sku?'<div class="card-sku">'+sku+'</div>':'')+
+        '</div><div class="card-badges">'+confBadge+urgBadge+'<span class="badge-manual">MANUAL</span></div>'+
+      '</div>'+
+      '<div class="card-single">'+
+        '<div class="side-lbl">'+(lead.type==='SELL_OFFER'?'SELLER':'BUYER')+'</div>'+
+        '<div class="side-co">'+(lead.company||'—')+'</div>'+
+        (lead.contact_name?'<div style="font-size:11px;color:#94a3b8">'+lead.contact_name+'</div>':'')+
+        contactHtml+
+        '<div class="side-price">'+fmtPrice(lead)+'</div>'+
+        '<div class="side-d">'+(lead.quantity||'—')+(lead.location?' · '+lead.location:'')+' · '+daysAgo(lead.date_received)+'</div>'+
+        (lead.eta?'<div class="side-d">ETA: '+lead.eta+'</div>':'')+
+        (lead.bbd_date?'<div class="side-d" style="color:#fc8181">BBD: '+lead.bbd_date+'</div>':'')+
+        '<div class="card-src">'+icon+' Via '+lead.channel+'</div>'+
+        (noteSnip?'<div class="card-notes">'+noteSnip+'</div>':'')+
+        '<div style="margin-top:8px;display:flex;gap:5px">'+
+          '<button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️ Edit</button>'+
+          '<button class="ml-del-btn" onclick="qaDelOpp(''+lead.id+'')">🗑</button>'+
+        '</div>'+
+      '</div>';
+  }
+
+  var groupMap={exact:'cards-exact',partial:'cards-partial','sup-only':'cards-supply','buy-only':'cards-buyer'};
+  var gridId=groupMap[conf];
+  var grid=document.getElementById(gridId);
+  if(grid){
+    grid.insertAdjacentElement('afterbegin',card);
+    var grpKey={exact:'exact',partial:'partial','sup-only':'supply','buy-only':'buyer'}[conf];
+    var cnt=document.getElementById('cnt-'+grpKey);
+    if(cnt)cnt.textContent=grid.querySelectorAll('.opp-card').length;
+    var grp=document.getElementById('grp-'+grpKey);
+    if(grp)grp.style.display='';
+  }
+}
+
+/* ── RENDER LEAD IN SUPPLY / DEMAND TABLE ── */
+function qaRenderInTable(lead){
+  var icon=ICONS[lead.channel]||'📝';
+  var p=fmtPrice(lead);
+  if(lead.type==='SELL_OFFER'){
+    var tb=document.querySelector('#supply-table tbody');
+    if(!tb)return;
+    var tr=document.createElement('tr');
+    tr.dataset.manualId=lead.id;
+    tr.style.background='rgba(128,90,213,.07)';
+    tr.innerHTML=
+      '<td><span class="product"><span class="ml-icon">'+icon+'</span>'+(lead.product||lead.brand||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
+      '<td>'+(lead.size||'')+(lead.pack_config?' · '+lead.pack_config:'')+'</td>'+
+      '<td><span class="price">'+p+'</span></td>'+
+      '<td>'+(lead.quantity||'—')+'</td>'+
+      '<td>'+(lead.location||'—')+'</td>'+
+      '<td>'+(lead.t_grade||'—')+'</td>'+
+      '<td>'+(lead.eta||lead.bbd_date||'—')+'</td>'+
+      '<td>'+(lead.company||'—')+'</td>'+
+      '<td><span class="email">'+(lead.contact_name||'')+'</span></td>'+
+      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(''+lead.id+'')">🗑</button></td>';
+    tb.insertAdjacentElement('afterbegin',tr);
+  }else{
+    var tb2=document.querySelector('#demand-table tbody');
+    if(!tb2)return;
+    var tr2=document.createElement('tr');
+    tr2.dataset.manualId=lead.id;
+    tr2.style.background='rgba(128,90,213,.07)';
+    tr2.innerHTML=
+      '<td><span class="product"><span class="ml-icon">'+icon+'</span>'+(lead.product||lead.brand||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
+      '<td>'+(lead.quantity||'—')+'</td>'+
+      '<td>'+(lead.company||'—')+'</td>'+
+      '<td><span class="email">'+(lead.contact_name||'')+(lead.contact_detail?' · '+lead.contact_detail:'')+'</span></td>'+
+      '<td>'+p+'</td>'+
+      '<td>'+(lead.location||'—')+'</td>'+
+      '<td>'+icon+' '+lead.channel+'</td>'+
+      '<td>'+lead.date_received+'<br><button class="ml-edit-btn" onclick="qaEditLead(''+lead.id+'')">✏️</button><button class="ml-del-btn" onclick="qaDelLead(''+lead.id+'')">🗑</button></td>'+
+      '<td><span class="badge-'+(lead.urgency==='HOT'?'high':'med')+'">'+lead.urgency+'</span></td>';
+    tb2.insertAdjacentElement('afterbegin',tr2);
+  }
+  qaAddToContacts(lead);
+}
+
+/* ── CONTACTS AUTO-ADD ── */
+function qaAddToContacts(lead){
+  if(!lead.company&&!lead.contact_name)return;
+  var tb=document.querySelector('#contacts-table tbody');
+  if(!tb)return;
+  if(lead.company){
+    var dup=Array.from(tb.querySelectorAll('td:first-child span.product')).find(function(s){
+      return s.textContent.toLowerCase()===lead.company.toLowerCase();
+    });
+    if(dup)return;
+  }
+  var icon=ICONS[lead.channel]||'📝';
+  var tr=document.createElement('tr');
+  tr.dataset.manualId=lead.id;
+  tr.style.background='rgba(128,90,213,.07)';
+  tr.innerHTML=
+    '<td><span class="product">'+(lead.company||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
+    '<td>'+(lead.contact_name||'—')+'</td>'+
+    '<td><span class="email">'+(lead.contact_detail||'—')+'</span></td>'+
+    '<td>'+icon+' '+lead.channel+'</td>'+
+    '<td><span class="badge-'+(lead.type==='SELL_OFFER'?'sup':'buy')+'">'+(lead.type==='SELL_OFFER'?'SUPPLIER':'BUYER')+'</span></td>'+
+    '<td>'+(lead.notes?lead.notes.substring(0,55)+(lead.notes.length>55?'…':''):'')+'</td>';
+  tb.insertAdjacentElement('afterbegin',tr);
+}
+
+/* ── RENDER ALL ── */
+function qaRenderAllLeads(){
+  document.querySelectorAll('tr[data-manual-id],td[data-manual-id]').forEach(function(r){r.remove();});
+  document.querySelectorAll('.opp-card[data-manual-id]').forEach(function(c){c.remove();});
+  getLeads().forEach(function(lead){
+    qaRenderInTable(lead);
+    qaFindMatch(lead);
+  });
+  ['exact','partial','supply','buyer'].forEach(function(g){
+    var grid=document.getElementById('cards-'+g);
+    if(!grid)return;
+    var cnt=document.getElementById('cnt-'+g);
+    if(cnt)cnt.textContent=grid.querySelectorAll('.opp-card').length;
+    var grp=document.getElementById('grp-'+g);
+    if(grp&&parseInt(cnt&&cnt.textContent||0)===0)grp.style.display='none';
+  });
+}
+
+/* ── EDIT ── */
+window.qaEditLead=function(id){
+  var lead=getLeads().find(function(l){return l.id===id;});
+  if(!lead)return;
+  qaResetForm();
+  document.getElementById('qa-edit-id').value=lead.id;
+  qaSetType(lead.type);
+  var m={channel:'qa-channel','contact_name':'qa-cname',company:'qa-company','contact_detail':'qa-cdetail',product:'qa-product',brand:'qa-brand',size:'qa-size','pack_config':'qa-pack',abv:'qa-abv',quantity:'qa-qty','t_grade':'qa-tgrade',location:'qa-location',price:'qa-price',currency:'qa-currency','price_per':'qa-price-per','bbd_date':'qa-bbd',eta:'qa-eta',notes:'qa-notes','date_received':'qa-date-received'};
+  Object.keys(m).forEach(function(k){var e=document.getElementById(m[k]);if(e&&lead[k]!=null)e.value=lead[k];});
+  document.getElementById('qa-urgency').value=lead.urgency||'ACTIVE';
+  document.querySelectorAll('.qa-urg').forEach(function(u){
+    var cls={HOT:'u-hot',ACTIVE:'u-active','FOLLOW UP LATER':'u-later'}[u.dataset.u]||'';
+    u.className='qa-urg'+(u.dataset.u===lead.urgency?' '+cls:'');
+  });
+  document.getElementById('qa-save-btn').textContent='Update Lead';
+  document.getElementById('qa-overlay').classList.add('open');
+};
+
+/* ── DELETE ── */
+window.qaDelLead=function(id){
+  if(!confirm('Delete this lead?'))return;
+  saveLeads(getLeads().filter(function(l){return l.id!==id;}));
+  qaRenderAllLeads();
+  qaToast('Lead deleted.','#fc8181');
+};
+window.qaDelOpp=function(id){qaDelLead(id);};
+
+/* ── MANAGE LIST ── */
+function qaRenderManage(){
+  var leads=getLeads();
+  var el=document.getElementById('qa-leads-list');
+  if(!leads.length){el.innerHTML='<p style="color:#64748b;font-size:12px">No manual leads saved yet.</p>';return;}
+  el.innerHTML=leads.slice().reverse().map(function(l){
+    var icon=ICONS[l.channel]||'📝';
+    return '<div class="qa-lead-item">'+
+      '<div class="qa-lead-main">'+
+        '<div class="qa-lead-ttl">'+icon+' '+(l.product||l.brand||'—')+
+        ' <span style="color:'+(l.type==='SELL_OFFER'?'#63b3ed':'#48bb78')+';font-size:10px">'+(l.type==='SELL_OFFER'?'SELL':'BUY')+'</span></div>'+
+        '<div class="qa-lead-meta">'+(l.company||'—')+' · '+fmtPrice(l)+' · '+l.date_received+
+        ' · <span style="color:'+(l.urgency==='HOT'?'#fc8181':'#f6ad55')+'">'+l.urgency+'</span></div>'+
+      '</div>'+
+      '<div class="qa-lead-acts">'+
+        '<button class="ml-edit-btn" onclick="qaEditLead(''+l.id+'')">✏️</button>'+
+        '<button class="ml-del-btn" onclick="qaDelLead(''+l.id+'')">🗑</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ── TOAST ── */
+function qaToast(msg,color){
+  var t=document.getElementById('qa-toast');
+  t.textContent=msg;t.style.borderColor=color||'#48bb78';
+  t.classList.add('qt-show');
+  setTimeout(function(){t.classList.remove('qt-show');},3200);
+}
+
+/* ── API KEY ── */
+window.qaSaveKey=function(){
+  var k=document.getElementById('qa-apikey').value.trim();
+  localStorage.setItem('qa_api_key',k);
+  qaToast('API key saved in browser.','#805ad5');
+};
+
+/* ── EXTRACT WITH AI ── */
+window.qaExtract=function(){
+  var key=localStorage.getItem('qa_api_key')||document.getElementById('qa-apikey').value.trim();
+  if(!key){alert('Enter your Anthropic API key first.');return;}
+  var txt=document.getElementById('qa-paste-txt').value.trim();
+  if(!txt){alert('Paste a message first.');return;}
+  var btn=document.getElementById('qa-ext-btn');
+  var status=document.getElementById('qa-ext-status');
+  btn.disabled=true;status.textContent='⏳ Extracting…';
+  document.getElementById('qa-ext-preview').style.display='none';
+  var prompt='Extract trading lead details from this beverage trading message. Return ONLY a JSON object with these fields: type (BUY_REQUEST or SELL_OFFER), brand, size_cl (number), pack_config, abv (number), quantity_cases, t_grade (T1/T2/NRF/RF or null), location, price (number), currency (EUR/USD/GBP), price_per (case or bottle), bbd_date (YYYY-MM-DD or null), eta, contact_name, company, notes. Null for any field not mentioned. CRITICAL: size_cl must be exact number only.
+
+Message: "'+txt.replace(/"/g,'\"')+'"';
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:800,messages:[{role:'user',content:prompt}]})
+  }).then(function(r){return r.json();}).then(function(data){
+    btn.disabled=false;
+    if(data.error){status.textContent='❌ '+data.error.message;return;}
+    var out=data.content&&data.content[0]&&data.content[0].text;
+    if(!out){status.textContent='❌ No response';return;}
+    var m=out.match(/\{[\s\S]*\}/);
+    if(!m){status.textContent='❌ Could not parse JSON';return;}
+    try{
+      _extracted=JSON.parse(m[0]);
+      status.textContent='✅ Done!';
+      var flds=[['Type',_extracted.type],['Brand',_extracted.brand],['Size',_extracted.size_cl?_extracted.size_cl+'cl':null],['Pack',_extracted.pack_config],['ABV',_extracted.abv?_extracted.abv+'%':null],['Qty',_extracted.quantity_cases],['T-Grade',_extracted.t_grade],['Location',_extracted.location],['Price',_extracted.price?_extracted.price+' '+(_extracted.currency||'EUR')+'/'+(_extracted.price_per||'cs'):null],['BBD',_extracted.bbd_date],['ETA',_extracted.eta],['Contact',_extracted.contact_name],['Company',_extracted.company]];
+      document.getElementById('qa-ext-grid').innerHTML=flds.map(function(f){return'<div class="qa-ext-fld"><span>'+f[0]+':</span> <strong>'+(f[1]||'—')+'</strong></div>';}).join('');
+      document.getElementById('qa-ext-preview').style.display='';
+    }catch(e){status.textContent='❌ Parse error: '+e.message;}
+  }).catch(function(e){btn.disabled=false;status.textContent='❌ '+e.message;});
+};
+
+window.qaFillFromExtract=function(){
+  if(!_extracted)return;
+  var d=_extracted;
+  if(d.type)qaSetType(d.type);
+  if(d.brand)document.getElementById('qa-brand').value=d.brand;
+  if(d.brand||d.pack_config)document.getElementById('qa-product').value=[d.brand,d.pack_config].filter(Boolean).join(' ');
+  if(d.size_cl){var so=['5cl','20cl','35cl','37.5cl','50cl','70cl','75cl','100cl','150cl','330ml','355ml','500ml','1L'];var sm=so.find(function(o){return o.replace('cl','').replace('ml','')===String(d.size_cl);})||'other';document.getElementById('qa-size').value=sm;}
+  if(d.pack_config)document.getElementById('qa-pack').value=d.pack_config;
+  if(d.abv)document.getElementById('qa-abv').value=d.abv;
+  if(d.quantity_cases)document.getElementById('qa-qty').value=d.quantity_cases;
+  if(d.t_grade)document.getElementById('qa-tgrade').value=d.t_grade;
+  if(d.location)document.getElementById('qa-location').value=d.location;
+  if(d.price)document.getElementById('qa-price').value=d.price;
+  if(d.currency)document.getElementById('qa-currency').value=d.currency;
+  if(d.price_per)document.getElementById('qa-price-per').value=d.price_per;
+  if(d.bbd_date)document.getElementById('qa-bbd').value=d.bbd_date;
+  if(d.eta)document.getElementById('qa-eta').value=d.eta;
+  if(d.contact_name)document.getElementById('qa-cname').value=d.contact_name;
+  if(d.company)document.getElementById('qa-company').value=d.company;
+  document.getElementById('qa-notes').value=document.getElementById('qa-paste-txt').value;
+  qaTab('form');
+};
+
+/* ── INIT ── */
+setTimeout(function(){qaRenderAllLeads();},400);
+
+})();
+</script>
 </body>
 </html>
