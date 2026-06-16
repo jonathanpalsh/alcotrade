@@ -228,6 +228,15 @@
 .qa-lead-ttl{font-size:12px;font-weight:600;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .qa-lead-meta{font-size:10px;color:#64748b;margin-top:2px}
 .qa-lead-acts{display:flex;gap:5px;margin-left:10px;flex-shrink:0}
+
+/* ── QA REVIEW STEP ── */
+.qa-review-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(51,65,85,.4)}
+.qa-review-lbl{font-size:10px;color:#64748b;width:90px;flex-shrink:0;font-weight:600;text-transform:uppercase;letter-spacing:.04em;line-height:1.3}
+.qa-review-val{flex:1;min-width:0}
+.qa-rv-inp{width:100%;background:#0f172a;border:1px solid #334155;border-radius:4px;color:#f1f5f9;font-size:11px;padding:3px 6px;outline:none;font-family:inherit;box-sizing:border-box}
+select.qa-rv-inp{padding:3px 4px}
+.qa-rv-inp:focus{border-color:#f6ad55}
+.badge-assumed{display:inline-block;background:#744210;color:#f6ad55;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:3px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -3393,7 +3402,7 @@ function generateInvoiceDoc() {
         <div class="qa-sec">
           <div class="qa-sec-ttl">Product</div>
           <div class="qa-row">
-            <div class="qa-f req"><label>Product Description</label><input type="text" id="qa-product" placeholder="Jack Daniel's 12×70cl NRF"></div>
+            <div class="qa-f"><label>Product Description</label><input type="text" id="qa-product" placeholder="Jack Daniel's 12×70cl NRF"></div>
             <div class="qa-f"><label>Brand</label><input type="text" id="qa-brand" placeholder="Jack Daniel's"></div>
           </div>
           <div class="qa-row">
@@ -3472,9 +3481,15 @@ function generateInvoiceDoc() {
             <span id="qa-ext-status"></span>
           </div>
           <div id="qa-ext-preview">
-            <h4>Extracted Fields — review before saving</h4>
-            <div class="qa-ext-grid" id="qa-ext-grid"></div>
-            <button class="qa-btn qa-btn-save" style="margin-top:12px" onclick="qaFillFromExtract()">Fill Form with These Fields →</button>
+            <h4 style="display:flex;justify-content:space-between;align-items:center">
+              <span>Review Extracted Fields</span>
+              <span id="qa-assumed-note" style="font-size:10px;font-weight:400;color:#f6ad55"></span>
+            </h4>
+            <div id="qa-ext-grid"></div>
+            <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+              <button class="qa-btn qa-btn-save" onclick="qaConfirmExtract()">✅ Confirm &amp; Save</button>
+              <button class="qa-btn qa-btn-cancel" style="font-size:11px" onclick="qaFillFromExtract()">✏️ Edit in Form</button>
+            </div>
           </div>
         </div>
       </div>
@@ -3503,6 +3518,10 @@ function generateInvoiceDoc() {
 
 var ICONS={WhatsApp:'📱',LinkedIn:'💼','Phone Call':'📞',Meeting:'🤝',Other:'📝'};
 var _extracted=null;
+
+/* ── SIZE MAP ── */
+var SIZE_MAP={'5':'5cl','20':'20cl','35':'35cl','37.5':'37.5cl','50':'50cl','70':'70cl','75':'75cl','100':'100cl','150':'150cl','330':'330ml','355':'355ml','500':'500ml','1000':'1L'};
+function sizeClToOption(n){var k=String(parseFloat(n));return SIZE_MAP[k]||'';}
 
 function getLeads(){return JSON.parse(localStorage.getItem('manual_leads')||'[]');}
 function saveLeads(l){localStorage.setItem('manual_leads',JSON.stringify(l));}
@@ -3592,7 +3611,7 @@ function qaCollect(){
 /* ── SUBMIT ── */
 window.qaSubmit=function(){
   var data=qaCollect();
-  if(!data.product){alert('Product description is required.');return;}
+  if(!data.contact_name){alert('Contact Name is required.');return;}
   var leads=getLeads();
   var editId=document.getElementById('qa-edit-id').value;
   if(editId){
@@ -3626,7 +3645,7 @@ function daysAgo(dateStr){
 function qaFindMatch(lead){
   var terms=[];
   if(lead.brand)terms=terms.concat(lead.brand.toLowerCase().split(/\s+/));
-  if(lead.product)terms=terms.concat(lead.product.toLowerCase().split(/[\s×x,]+/).filter(function(t){return t.length>3;}));
+  if(lead.product)terms=terms.concat(lead.product.toLowerCase().split(/[\s\xd7x,]+/).filter(function(t){return t.length>3;}));
   if(lead.size)terms.push(lead.size.toLowerCase().replace(/[clm]/g,''));
   var found=null;
   var rows=document.querySelectorAll(lead.type==='SELL_OFFER'?'#demand-table tbody tr:not([data-manual-id])':'#supply-table tbody tr:not([data-manual-id])');
@@ -3648,7 +3667,7 @@ function qaCreateOppCard(lead,match){
   var conf=hasMatch?(isStrong?'exact':'partial'):(lead.type==='SELL_OFFER'?'sup-only':'buy-only');
   var confBadge=hasMatch?(isStrong?'<span class="badge-exact">EXACT</span>':'<span class="badge-partial">PARTIAL</span>'):(lead.type==='SELL_OFFER'?'<span class="badge-sup-only">SUPPLY</span>':'<span class="badge-buy-only">BUYER</span>');
   var urgBadge=lead.urgency==='HOT'?'<span class="badge-hot">🔥 HOT</span>':lead.urgency==='ACTIVE'?'<span class="badge-active">ACTIVE</span>':'<span class="badge-stale">LATER</span>';
-  var sku=[lead.size,lead.t_grade,lead.abv?lead.abv+'%':null].filter(Boolean).join(' · ');
+  var sku=[lead.size,lead.t_grade,lead.abv?lead.abv+'%':null].filter(Boolean).join(' \xb7 ');
   var noteSnip=lead.notes?'"'+lead.notes.substring(0,70)+(lead.notes.length>70?'…':'')+'"':'';
   var contactHtml='';
   if(lead.contact_detail){
@@ -3657,10 +3676,8 @@ function qaCreateOppCard(lead,match){
     else if(/^[+\d\s().-]+$/.test(cd))contactHtml='<a href="tel:'+cd+'" style="color:#63b3ed;font-size:10px">'+cd+'</a>';
     else contactHtml='<div class="side-em">'+cd+'</div>';
   }
-
   var existing=document.querySelector('.opp-card[data-manual-id="'+lead.id+'"]');
   if(existing)existing.remove();
-
   var card=document.createElement('div');
   card.className='opp-card '+conf;
   card.dataset.conf=conf;
@@ -3668,7 +3685,6 @@ function qaCreateOppCard(lead,match){
   card.dataset.cat='manual';
   card.dataset.inbox=lead.channel;
   card.dataset.manualId=lead.id;
-
   if(hasMatch){
     var matchedTxt=match.row.textContent.trim().substring(0,60);
     card.innerHTML=
@@ -3682,7 +3698,7 @@ function qaCreateOppCard(lead,match){
           '<div class="side-co">'+(lead.company||'—')+'</div>'+
           (lead.contact_name?'<div style="font-size:11px;color:#94a3b8">'+lead.contact_name+'</div>':'')+
           contactHtml+
-          '<div class="side-d">'+(lead.quantity||'—')+' · '+daysAgo(lead.date_received)+'</div>'+
+          '<div class="side-d">'+(lead.quantity||'—')+' \xb7 '+daysAgo(lead.date_received)+'</div>'+
           '<div class="card-src">'+icon+' Via '+lead.channel+'</div>'+
           (noteSnip?'<div class="side-snip">'+noteSnip+'</div>':'')+
         '</div>'+
@@ -3711,7 +3727,7 @@ function qaCreateOppCard(lead,match){
         (lead.contact_name?'<div style="font-size:11px;color:#94a3b8">'+lead.contact_name+'</div>':'')+
         contactHtml+
         '<div class="side-price">'+fmtPrice(lead)+'</div>'+
-        '<div class="side-d">'+(lead.quantity||'—')+(lead.location?' · '+lead.location:'')+' · '+daysAgo(lead.date_received)+'</div>'+
+        '<div class="side-d">'+(lead.quantity||'—')+(lead.location?' \xb7 '+lead.location:'')+' \xb7 '+daysAgo(lead.date_received)+'</div>'+
         (lead.eta?'<div class="side-d">ETA: '+lead.eta+'</div>':'')+
         (lead.bbd_date?'<div class="side-d" style="color:#fc8181">BBD: '+lead.bbd_date+'</div>':'')+
         '<div class="card-src">'+icon+' Via '+lead.channel+'</div>'+
@@ -3722,7 +3738,6 @@ function qaCreateOppCard(lead,match){
         '</div>'+
       '</div>';
   }
-
   var groupMap={exact:'cards-exact',partial:'cards-partial','sup-only':'cards-supply','buy-only':'cards-buyer'};
   var gridId=groupMap[conf];
   var grid=document.getElementById(gridId);
@@ -3736,7 +3751,7 @@ function qaCreateOppCard(lead,match){
   }
 }
 
-/* ── RENDER LEAD IN SUPPLY / DEMAND TABLE ── */
+/* ── RENDER IN TABLE ── */
 function qaRenderInTable(lead){
   var icon=ICONS[lead.channel]||'📝';
   var p=fmtPrice(lead);
@@ -3748,7 +3763,7 @@ function qaRenderInTable(lead){
     tr.style.background='rgba(128,90,213,.07)';
     tr.innerHTML=
       '<td><span class="product"><span class="ml-icon">'+icon+'</span>'+(lead.product||lead.brand||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
-      '<td>'+(lead.size||'')+(lead.pack_config?' · '+lead.pack_config:'')+'</td>'+
+      '<td>'+(lead.size||'')+(lead.pack_config?' \xb7 '+lead.pack_config:'')+'</td>'+
       '<td><span class="price">'+p+'</span></td>'+
       '<td>'+(lead.quantity||'—')+'</td>'+
       '<td>'+(lead.location||'—')+'</td>'+
@@ -3768,7 +3783,7 @@ function qaRenderInTable(lead){
       '<td><span class="product"><span class="ml-icon">'+icon+'</span>'+(lead.product||lead.brand||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
       '<td>'+(lead.quantity||'—')+'</td>'+
       '<td>'+(lead.company||'—')+'</td>'+
-      '<td><span class="email">'+(lead.contact_name||'')+(lead.contact_detail?' · '+lead.contact_detail:'')+'</span></td>'+
+      '<td><span class="email">'+(lead.contact_name||'')+(lead.contact_detail?' \xb7 '+lead.contact_detail:'')+'</span></td>'+
       '<td>'+p+'</td>'+
       '<td>'+(lead.location||'—')+'</td>'+
       '<td>'+icon+' '+lead.channel+'</td>'+
@@ -3779,7 +3794,7 @@ function qaRenderInTable(lead){
   qaAddToContacts(lead);
 }
 
-/* ── CONTACTS AUTO-ADD ── */
+/* ── CONTACTS ── */
 function qaAddToContacts(lead){
   if(!lead.company&&!lead.contact_name)return;
   var tb=document.querySelector('#contacts-table tbody');
@@ -3797,7 +3812,7 @@ function qaAddToContacts(lead){
   tr.innerHTML=
     '<td><span class="product">'+(lead.company||'—')+'</span><span class="badge-manual">MANUAL</span></td>'+
     '<td>'+(lead.contact_name||'—')+'</td>'+
-    '<td><span class="email">'+(lead.contact_detail||'—')+'</span></td>'+
+    '<td><span class="email">'+(lead.contact_detail||lead.contact_email||'—')+'</span></td>'+
     '<td>'+icon+' '+lead.channel+'</td>'+
     '<td><span class="badge-'+(lead.type==='SELL_OFFER'?'sup':'buy')+'">'+(lead.type==='SELL_OFFER'?'SUPPLIER':'BUYER')+'</span></td>'+
     '<td>'+(lead.notes?lead.notes.substring(0,55)+(lead.notes.length>55?'…':''):'')+'</td>';
@@ -3860,8 +3875,8 @@ function qaRenderManage(){
       '<div class="qa-lead-main">'+
         '<div class="qa-lead-ttl">'+icon+' '+(l.product||l.brand||'—')+
         ' <span style="color:'+(l.type==='SELL_OFFER'?'#63b3ed':'#48bb78')+';font-size:10px">'+(l.type==='SELL_OFFER'?'SELL':'BUY')+'</span></div>'+
-        '<div class="qa-lead-meta">'+(l.company||'—')+' · '+fmtPrice(l)+' · '+l.date_received+
-        ' · <span style="color:'+(l.urgency==='HOT'?'#fc8181':'#f6ad55')+'">'+l.urgency+'</span></div>'+
+        '<div class="qa-lead-meta">'+(l.company||'—')+' \xb7 '+fmtPrice(l)+' \xb7 '+l.date_received+
+        ' \xb7 <span style="color:'+(l.urgency==='HOT'?'#fc8181':'#f6ad55')+'">'+l.urgency+'</span></div>'+
       '</div>'+
       '<div class="qa-lead-acts">'+
         '<button class="ml-edit-btn" onclick="qaEditLead(\''+l.id+'\')">✏️</button>'+
@@ -3886,6 +3901,136 @@ window.qaSaveKey=function(){
   qaToast('API key saved in browser.','#805ad5');
 };
 
+/* ── REVIEW CARD ── */
+function qaShowReview(d){
+  var assumed=d.assumed_fields||[];
+  function ab(f){return assumed.indexOf(f)>=0?'<span class="badge-assumed">⚠ assumed</span>':'';}
+  function rv(lbl,f,type,opts){
+    var val=d[f]!=null?String(d[f]):'';
+    var safeVal=val.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    var inp=opts
+      ?'<select class="qa-rv-inp" data-field="'+f+'">'+[''].concat(opts).map(function(o){return'<option value="'+o+'"'+(o===val?' selected':'')+'>'+o+'</option>';}).join('')+'</select>'
+      :'<input class="qa-rv-inp" data-field="'+f+'" type="'+(type||'text')+'" value="'+safeVal+'">';
+    return'<div class="qa-review-row"><span class="qa-review-lbl">'+lbl+ab(f)+'</span><span class="qa-review-val">'+inp+'</span></div>';
+  }
+  var grid=document.getElementById('qa-ext-grid');
+  grid.style.display='block';
+  grid.innerHTML=
+    rv('Type','type','text',['SELL_OFFER','BUY_REQUEST'])+
+    rv('Brand','brand')+
+    rv('Expression','expression')+
+    rv('Packaging','packaging')+
+    rv('Size (cl)','size_cl','number')+
+    rv('Pack Config','pack_config')+
+    rv('ABV %','abv','number')+
+    rv('Qty (cases)','quantity_cases','number')+
+    rv('Qty raw','quantity_raw')+
+    rv('T-Grade','t_grade','text',['','T1','T2','NRF','RF','unknown'])+
+    rv('Location','location')+
+    rv('Price','price','number')+
+    rv('Currency','currency','text',['EUR','USD','GBP'])+
+    rv('Price per','price_per','text',['bottle','case'])+
+    rv('Price/case','price_per_case','number')+
+    rv('BBD Date','bbd_date','date')+
+    rv('ETA','eta')+
+    rv('Contact','contact_name')+
+    rv('Email','contact_email')+
+    rv('Company','company')+
+    rv('Notes','notes');
+  var note=document.getElementById('qa-assumed-note');
+  if(note)note.textContent=assumed.length?assumed.length+' assumed field'+(assumed.length>1?'s':''):'';
+  document.getElementById('qa-ext-preview').style.display='';
+}
+
+/* ── CONFIRM & SAVE FROM REVIEW ── */
+window.qaConfirmExtract=function(){
+  if(!_extracted)return;
+  var d={};
+  document.querySelectorAll('.qa-rv-inp').forEach(function(inp){
+    var v=inp.value.trim();
+    d[inp.dataset.field]=v||null;
+  });
+  var today=document.getElementById('qa-date-received').value||new Date().toISOString().slice(0,10);
+  var channel=document.getElementById('qa-channel').value||'Other';
+  var urgency=document.getElementById('qa-urgency').value||'ACTIVE';
+  var sizeOpt=sizeClToOption(d.size_cl);
+  if(!sizeOpt&&d.pack_config){
+    var pm=d.pack_config.match(/(\d+(?:\.\d+)?)\s*(?:cl|ml|L)/i);
+    if(pm)sizeOpt=sizeClToOption(pm[1]);
+  }
+  var noteParts=[
+    d.notes,
+    d.packaging?'Packaging: '+d.packaging:null,
+    d.price_per_case?'Price/case: '+(d.currency||'EUR')+' '+d.price_per_case:null,
+    d.quantity_raw?'Qty: '+d.quantity_raw:null
+  ].filter(Boolean);
+  var lead={
+    id:'ml_'+Date.now(),
+    timestamp:Date.now(),
+    type:d.type||'SELL_OFFER',
+    channel:channel,
+    date_received:today,
+    urgency:urgency,
+    contact_name:d.contact_name||'',
+    company:d.company||'',
+    contact_detail:d.contact_email||'',
+    contact_email:d.contact_email||'',
+    product:[d.brand,d.expression,d.pack_config].filter(Boolean).join(' '),
+    brand:d.brand||'',
+    size:sizeOpt,
+    pack_config:d.pack_config||'',
+    abv:d.abv||null,
+    quantity:d.quantity_cases?(d.quantity_cases+' cs'+(d.quantity_raw?' ('+d.quantity_raw+')':'')):null,
+    t_grade:d.t_grade||'',
+    location:d.location||'',
+    price:d.price||null,
+    currency:d.currency||'EUR',
+    price_per:d.price_per||'case',
+    bbd_date:d.bbd_date||null,
+    eta:d.eta||'',
+    notes:noteParts.join(' | ')
+  };
+  var leads=getLeads();
+  leads.push(lead);
+  saveLeads(leads);
+  var match=qaFindMatch(lead);
+  qaRenderAllLeads();
+  qaToast('✅ Lead saved. '+(match?'✓ Match found!':'No match yet'),match?'#48bb78':'#f6ad55');
+  qaClose();
+};
+
+/* ── FILL FORM FROM REVIEW / EXTRACTED ── */
+window.qaFillFromExtract=function(){
+  if(!_extracted)return;
+  var d=Object.assign({},_extracted);
+  document.querySelectorAll('.qa-rv-inp').forEach(function(inp){
+    var v=inp.value.trim();
+    d[inp.dataset.field]=v||null;
+  });
+  if(d.type)qaSetType(d.type);
+  if(d.brand)document.getElementById('qa-brand').value=d.brand;
+  document.getElementById('qa-product').value=[d.brand,d.expression,d.pack_config].filter(Boolean).join(' ');
+  var sizeOpt=sizeClToOption(d.size_cl);
+  if(!sizeOpt&&d.pack_config){var pm=d.pack_config.match(/(\d+(?:\.\d+)?)\s*(?:cl|ml|L)/i);if(pm)sizeOpt=sizeClToOption(pm[1]);}
+  if(sizeOpt)document.getElementById('qa-size').value=sizeOpt;
+  if(d.pack_config)document.getElementById('qa-pack').value=d.pack_config;
+  if(d.abv)document.getElementById('qa-abv').value=d.abv;
+  if(d.quantity_cases)document.getElementById('qa-qty').value=d.quantity_cases+(d.quantity_raw?' ('+d.quantity_raw+')':'');
+  if(d.t_grade)document.getElementById('qa-tgrade').value=d.t_grade;
+  if(d.location)document.getElementById('qa-location').value=d.location;
+  if(d.price)document.getElementById('qa-price').value=d.price;
+  if(d.currency)document.getElementById('qa-currency').value=d.currency;
+  if(d.price_per)document.getElementById('qa-price-per').value=d.price_per;
+  if(d.bbd_date)document.getElementById('qa-bbd').value=d.bbd_date;
+  if(d.eta)document.getElementById('qa-eta').value=d.eta;
+  if(d.contact_name)document.getElementById('qa-cname').value=d.contact_name;
+  if(d.contact_email)document.getElementById('qa-cdetail').value=d.contact_email;
+  if(d.company)document.getElementById('qa-company').value=d.company;
+  var noteParts=[d.notes,d.packaging?'Packaging: '+d.packaging:null,d.price_per_case?'Price/case: '+(d.currency||'EUR')+' '+d.price_per_case:null,d.quantity_raw?'Qty: '+d.quantity_raw:null].filter(Boolean);
+  document.getElementById('qa-notes').value=noteParts.join(' | ')||document.getElementById('qa-paste-txt').value;
+  qaTab('form');
+};
+
 /* ── EXTRACT WITH AI ── */
 window.qaExtract=function(){
   var key=localStorage.getItem('qa_api_key')||document.getElementById('qa-apikey').value.trim();
@@ -3896,11 +4041,11 @@ window.qaExtract=function(){
   var status=document.getElementById('qa-ext-status');
   btn.disabled=true;status.textContent='⏳ Extracting…';
   document.getElementById('qa-ext-preview').style.display='none';
-  var prompt='Extract trading lead details from this beverage trading message. Return ONLY a JSON object with these fields: type (BUY_REQUEST or SELL_OFFER), brand, size_cl (number), pack_config, abv (number), quantity_cases, t_grade (T1/T2/NRF/RF or null), location, price (number), currency (EUR/USD/GBP), price_per (case or bottle), bbd_date (YYYY-MM-DD or null), eta, contact_name, company, notes. Null for any field not mentioned. CRITICAL: size_cl must be exact number only.\n\nMessage: "'+txt.replace(/"/g,'\"')+'"';
+  var prompt='Extract trading lead details from this beverage industry message. Return ONLY a valid JSON object, no markdown, no explanation, no backticks.\n\nFields to extract:\n- type: SELL_OFFER or BUY_REQUEST (detect from context: "I can offer"/"we have"/"please find"=SELL_OFFER; "looking for"/"need"/"can you offer"=BUY_REQUEST)\n- brand: brand name only\n- expression: age/variant e.g. "12 Year Old", "VSOP"\n- packaging: GBX/gift box/NRF/RF etc\n- size_cl: bottle size as number (70 not "70cl"); "70 cl" and "70cl" and "0.70L" and "700ml" all equal 70\n- pack_config: e.g. "6x70cl", "12x1L"\n- abv: ABV as number (40 not "40%")\n- quantity_cases: total cases as number\n- quantity_raw: original quantity text e.g. "30 pallets x 480 btls"\n- t_grade: T1/T2/NRF/RF/unknown\n- location: full location string\n- price: price as decimal number (convert comma to dot: 17,90 becomes 17.90)\n- currency: EUR/USD/GBP\n- price_per: "bottle" or "case"\n- price_per_case: calculate if price_per is bottle\n- bbd_date: BBD if mentioned else null\n- eta: availability e.g. "ready", "mid-July", "3 weeks"\n- contact_name: full name\n- contact_email: email address (detect in <email@domain.com> format too)\n- company: company name (derive from email domain if not stated: hansendranken.nl becomes Hansen Dranken)\n- notes: any other relevant details\n- assumed_fields: array of field names that were calculated or assumed rather than explicitly stated\n\nRULES:\n- size_cl must be exact number, never guess\n- European price format: 17,90 = 17.90\n- If quantity given as pallets x bottles, calculate cases assuming 6 btl/case for spirits, 24 for beer or RTD. Add pack_config to assumed_fields.\n- Detect email in angle bracket format like <email@domain.com>\n- For "Glenfiddich 12Y SM GBX": brand=Glenfiddich, expression="12 Year Old Single Malt", packaging="GBX"\n- "EXW Our warehouse in Linne" becomes location "EXW Linne, Netherlands"\n\nMessage to parse:\n'+txt;
   fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:800,messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
   }).then(function(r){return r.json();}).then(function(data){
     btn.disabled=false;
     if(data.error){status.textContent='❌ '+data.error.message;return;}
@@ -3910,41 +4055,15 @@ window.qaExtract=function(){
     if(!m){status.textContent='❌ Could not parse JSON';return;}
     try{
       _extracted=JSON.parse(m[0]);
-      status.textContent='✅ Done!';
-      var flds=[['Type',_extracted.type],['Brand',_extracted.brand],['Size',_extracted.size_cl?_extracted.size_cl+'cl':null],['Pack',_extracted.pack_config],['ABV',_extracted.abv?_extracted.abv+'%':null],['Qty',_extracted.quantity_cases],['T-Grade',_extracted.t_grade],['Location',_extracted.location],['Price',_extracted.price?_extracted.price+' '+(_extracted.currency||'EUR')+'/'+(_extracted.price_per||'cs'):null],['BBD',_extracted.bbd_date],['ETA',_extracted.eta],['Contact',_extracted.contact_name],['Company',_extracted.company]];
-      document.getElementById('qa-ext-grid').innerHTML=flds.map(function(f){return'<div class="qa-ext-fld"><span>'+f[0]+':</span> <strong>'+(f[1]||'—')+'</strong></div>';}).join('');
-      document.getElementById('qa-ext-preview').style.display='';
+      status.textContent='✅ Extracted — review below';
+      qaShowReview(_extracted);
     }catch(e){status.textContent='❌ Parse error: '+e.message;}
   }).catch(function(e){btn.disabled=false;status.textContent='❌ '+e.message;});
-};
-
-window.qaFillFromExtract=function(){
-  if(!_extracted)return;
-  var d=_extracted;
-  if(d.type)qaSetType(d.type);
-  if(d.brand)document.getElementById('qa-brand').value=d.brand;
-  if(d.brand||d.pack_config)document.getElementById('qa-product').value=[d.brand,d.pack_config].filter(Boolean).join(' ');
-  if(d.size_cl){var so=['5cl','20cl','35cl','37.5cl','50cl','70cl','75cl','100cl','150cl','330ml','355ml','500ml','1L'];var sm=so.find(function(o){return o.replace('cl','').replace('ml','')===String(d.size_cl);})||'other';document.getElementById('qa-size').value=sm;}
-  if(d.pack_config)document.getElementById('qa-pack').value=d.pack_config;
-  if(d.abv)document.getElementById('qa-abv').value=d.abv;
-  if(d.quantity_cases)document.getElementById('qa-qty').value=d.quantity_cases;
-  if(d.t_grade)document.getElementById('qa-tgrade').value=d.t_grade;
-  if(d.location)document.getElementById('qa-location').value=d.location;
-  if(d.price)document.getElementById('qa-price').value=d.price;
-  if(d.currency)document.getElementById('qa-currency').value=d.currency;
-  if(d.price_per)document.getElementById('qa-price-per').value=d.price_per;
-  if(d.bbd_date)document.getElementById('qa-bbd').value=d.bbd_date;
-  if(d.eta)document.getElementById('qa-eta').value=d.eta;
-  if(d.contact_name)document.getElementById('qa-cname').value=d.contact_name;
-  if(d.company)document.getElementById('qa-company').value=d.company;
-  document.getElementById('qa-notes').value=document.getElementById('qa-paste-txt').value;
-  qaTab('form');
 };
 
 /* ── INIT ── */
 setTimeout(function(){qaRenderAllLeads();},400);
 
-})();
-</script>
+})();</script>
 </body>
 </html>
